@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Spectral – Svensk Webbplats</title>
+  <title>Spectral – Enkel Webbplats</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,14 +11,11 @@
 
   <style>
     :root {
-      /* Colors closely matching original Spectral */
-      --bg-main: #2e3141;
-      --bg-overlay: #1c1f2a;
-      --accent: #e44c65;
-      --accent-hover: #f06b80;
-      --text-main: #ffffff;
-      --text-muted: rgba(255,255,255,0.65);
-      --border-soft: rgba(255,255,255,0.15);
+      --bg: #0f1116;
+      --accent: #7dd3fc;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: rgba(255,255,255,0.08);
     }
 
     * { box-sizing: border-box; }
@@ -26,15 +23,15 @@
     body {
       margin: 0;
       font-family: 'Source Sans 3', system-ui, sans-serif;
-      background: linear-gradient(180deg, var(--bg-main), var(--bg-overlay));
+      background: var(--bg);
       color: var(--text-main);
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     header {
       position: sticky;
       top: 0;
-      background: rgba(46,49,65,0.9);
+      background: rgba(15,17,22,0.85);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border-soft);
       z-index: 10;
@@ -46,26 +43,25 @@
       padding: 1rem 1.5rem;
       display: flex;
       justify-content: center;
-      gap: 0.75rem;
+      gap: 1rem;
       flex-wrap: wrap;
     }
 
     nav a {
-      padding: 0.65rem 1.5rem;
+      padding: 0.6rem 1.4rem;
       border-radius: 999px;
-      border: 1px solid var(--border-soft);
+      border: 1px solid var(--accent);
       color: var(--text-main);
       font-weight: 600;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.05em;
       transition: all 0.25s ease;
       text-transform: uppercase;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
     }
 
     nav a:hover {
       background: var(--accent);
-      border-color: var(--accent);
-      color: #ffffff;
+      color: #020617;
     }
 
     section {
@@ -73,18 +69,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 4.5rem 1.5rem;
+      padding: 4rem 1.5rem;
       text-align: center;
     }
 
     .content {
-      max-width: 760px;
+      max-width: 720px;
     }
 
     h1, h2 {
-      letter-spacing: 0.25em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 1rem;
     }
 
     p {
@@ -94,10 +89,9 @@
 
     footer {
       text-align: center;
-      padding: 2.5rem 1.5rem;
+      padding: 2rem 1.5rem;
       color: var(--text-muted);
       border-top: 1px solid var(--border-soft);
-      background: rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -117,8 +111,8 @@
   <div class="content">
     <h1>Om Oss</h1>
     <p>
-      Vi arbetar med samma visuella känsla som originalet Spectral –
-      mörkt, elegant och fokuserat – men med ett renare, bildlöst uttryck.
+      Vi är en organisation med fokus på kvalitet, enkelhet och ett starkt
+      visuellt uttryck. Vår webbplats är byggd med ett lugnt, modernt Spectral-inspirerat tema.
     </p>
   </div>
 </section>
@@ -127,8 +121,8 @@
   <div class="content">
     <h2>Tjänster</h2>
     <p>
-      Våra tjänster är utformade för att vara tydliga, professionella och
-      anpassade efter moderna digitala behov.
+      Vi erbjuder skräddarsydda lösningar, rådgivning och digitala tjänster
+      anpassade efter dina behov.
     </p>
   </div>
 </section>
@@ -137,8 +131,8 @@
   <div class="content">
     <h2>Samarbeten</h2>
     <p>
-      Vi tror på långsiktiga samarbeten och starka partnerskap som bygger
-      på förtroende, kvalitet och gemensamma mål.
+      Vi arbetar tillsammans med partners och organisationer som delar
+      våra värderingar och vår ambition att skapa långsiktigt värde.
     </p>
   </div>
 </section>
@@ -147,8 +141,8 @@
   <div class="content">
     <h2>Bli Medlem</h2>
     <p>
-      Som medlem blir du en del av vårt nätverk och får tillgång till
-      möjligheter, resurser och exklusivt innehåll.
+      Som medlem får du tillgång till exklusivt innehåll, erbjudanden och
+      gemenskap. Anslut dig och bli en del av något större.
     </p>
   </div>
 </section>
@@ -157,14 +151,14 @@
   <div class="content">
     <h2>Kontakta Oss</h2>
     <p>
-      Har du frågor eller vill inleda ett samarbete?
-      Kontakta oss så återkommer vi så snart vi kan.
+      Hör gärna av dig till oss med frågor eller samarbeten.
+      Vi ser fram emot att komma i kontakt med dig.
     </p>
   </div>
 </section>
 
 <footer>
-  <small>BRYTPUNKTEN</small>
+  <small>&copy; 2026 – Spectral-inspirerad webbplats</small>
 </footer>
 
 </body>
