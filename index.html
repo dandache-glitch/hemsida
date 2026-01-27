@@ -11,11 +11,11 @@
 
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #7dd3fc, #3b82f6); /* Från loggans ljusblå till blå */
-      --accent: #ffecb3; /* Accentfärg för knappar (ljus gul för kontrast) */
-      --text-main: #ffffff;
-      --text-muted: rgba(255,255,255,0.8);
-      --border-soft: rgba(255,255,255,0.2);
+      --bg: #0f1116; /* Ursprunglig mörk bakgrund */
+      --accent: #7dd3fc; /* Knapp accent */
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: rgba(255,255,255,0.08);
     }
 
     * { box-sizing: border-box; }
@@ -27,7 +27,7 @@
     body {
       margin: 0;
       font-family: 'Source Sans 3', system-ui, sans-serif;
-      background: var(--bg-gradient);
+      background: var(--bg);
       color: var(--text-main);
       line-height: 1.6;
     }
@@ -35,7 +35,7 @@
     header {
       position: sticky;
       top: 0;
-      background: rgba(0,0,0,0.3);
+      background: rgba(15,17,22,0.85);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border-soft);
       z-index: 10;
@@ -51,12 +51,25 @@
       flex-wrap: wrap;
     }
 
-    nav .logo img {
-      height: 50px;
+    /* Egen logga som cirkel med gradient */
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7dd3fc, #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: white;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 0 15px rgba(125,211,252,0.5);
       transition: transform 0.3s ease;
     }
 
-    nav .logo:hover img {
+    .logo:hover {
       transform: scale(1.1);
     }
 
@@ -108,15 +121,7 @@
       justify-content: center;
       padding: 6rem 1.5rem;
       text-align: center;
-      background: rgba(0,0,0,0.2); /* Lätt transparens för sektioner */
-      margin: 1rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
-      transition: transform 0.5s ease;
-    }
-
-    section:hover {
-      transform: scale(1.02);
+      transition: transform 0.5s ease, background 0.5s ease;
     }
 
     .content {
@@ -136,7 +141,7 @@
     h1, h2 {
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      background: linear-gradient(90deg, #ffecb3, #ffe082);
+      background: linear-gradient(90deg, #7dd3fc, #3b82f6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -178,7 +183,7 @@
         display: flex;
       }
 
-      nav .logo img { height: 40px; }
+      .logo { width: 60px; height: 60px; font-size: 1.2rem; }
     }
 
     @media (max-width: 480px) {
@@ -190,9 +195,7 @@
 
 <header>
   <nav>
-    <a href="#om" class="logo">
-      <img src="https://raw.githubusercontent.com/dandache1337/bild1/main/IMG_0743.jpeg" alt="Spectral Logo">
-    </a>
+    <div class="logo">S</div> <!-- Egen logga med bokstav som symbol -->
 
     <div class="hamburger" onclick="toggleMenu(this)">
       <div></div>
