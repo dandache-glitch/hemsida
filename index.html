@@ -11,23 +11,23 @@
 
   <style>
     :root {
-      --bg: #0f1116;
-      --accent: #7dd3fc;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --border-soft: rgba(255,255,255,0.08);
+      --bg-gradient: linear-gradient(135deg, #7dd3fc, #3b82f6); /* Från loggans ljusblå till blå */
+      --accent: #ffecb3; /* Accentfärg för knappar (ljus gul för kontrast) */
+      --text-main: #ffffff;
+      --text-muted: rgba(255,255,255,0.8);
+      --border-soft: rgba(255,255,255,0.2);
     }
 
     * { box-sizing: border-box; }
 
     html {
-      scroll-behavior: smooth; /* Smooth scroll mellan sektioner */
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
       font-family: 'Source Sans 3', system-ui, sans-serif;
-      background: var(--bg);
+      background: var(--bg-gradient);
       color: var(--text-main);
       line-height: 1.6;
     }
@@ -35,7 +35,7 @@
     header {
       position: sticky;
       top: 0;
-      background: rgba(15,17,22,0.85);
+      background: rgba(0,0,0,0.3);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border-soft);
       z-index: 10;
@@ -44,14 +44,29 @@
     nav {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 1rem 1.5rem;
+      padding: 0.5rem 1.5rem;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav .logo img {
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    nav .logo:hover img {
+      transform: scale(1.1);
+    }
+
+    .menu-links {
+      display: flex;
       gap: 1rem;
       flex-wrap: wrap;
     }
 
-    nav a {
+    .menu-links a {
       padding: 0.6rem 1.4rem;
       border-radius: 999px;
       border: 1px solid var(--accent);
@@ -64,12 +79,28 @@
       text-decoration: none;
     }
 
-    nav a:hover {
+    .menu-links a:hover {
       background: var(--accent);
       color: #020617;
       transform: scale(1.05);
     }
 
+    /* Hamburger-knapp */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: var(--text-main);
+      transition: 0.3s;
+    }
+
+    /* Sektioner */
     section {
       min-height: 100vh;
       display: flex;
@@ -77,7 +108,11 @@
       justify-content: center;
       padding: 6rem 1.5rem;
       text-align: center;
-      transition: transform 0.5s ease, background 0.5s ease;
+      background: rgba(0,0,0,0.2); /* Lätt transparens för sektioner */
+      margin: 1rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      transition: transform 0.5s ease;
     }
 
     section:hover {
@@ -101,7 +136,7 @@
     h1, h2 {
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      background: linear-gradient(90deg, #7dd3fc, #3b82f6);
+      background: linear-gradient(90deg, #ffecb3, #ffe082);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -119,16 +154,34 @@
       border-top: 1px solid var(--border-soft);
     }
 
-    /* Lätt parallax-bakgrund på sektioner */
-    #om { background: rgba(15,17,22,0.95); }
-    #tjanster { background: rgba(15,17,22,0.9); }
-    #samarbeten { background: rgba(15,17,22,0.85); }
-    #medlem { background: rgba(15,17,22,0.9); }
-    #kontakt { background: rgba(15,17,22,0.95); }
-
-    /* Responsivitet */
+    /* Responsiv meny */
     @media (max-width: 768px) {
-      nav a { font-size: 0.75rem; padding: 0.5rem 1rem; }
+      .menu-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        gap: 0;
+      }
+
+      .menu-links a {
+        padding: 0.8rem;
+        text-align: center;
+        border-radius: 0;
+      }
+
+      .menu-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      nav .logo img { height: 40px; }
+    }
+
+    @media (max-width: 480px) {
       section { padding: 4rem 1rem; }
     }
   </style>
@@ -137,11 +190,23 @@
 
 <header>
   <nav>
-    <a href="#om">Om Oss</a>
-    <a href="#tjanster">Tjänster</a>
-    <a href="#samarbeten">Samarbeten</a>
-    <a href="#medlem">Bli Medlem</a>
-    <a href="#kontakt">Kontakta Oss</a>
+    <a href="#om" class="logo">
+      <img src="https://raw.githubusercontent.com/dandache1337/bild1/main/IMG_0743.jpeg" alt="Spectral Logo">
+    </a>
+
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="menu-links" id="menu">
+      <a href="#om">Om Oss</a>
+      <a href="#tjanster">Tjänster</a>
+      <a href="#samarbeten">Samarbeten</a>
+      <a href="#medlem">Bli Medlem</a>
+      <a href="#kontakt">Kontakta Oss</a>
+    </div>
   </nav>
 </header>
 
@@ -196,6 +261,14 @@
 <footer>
   <small>&copy; 2026 – Spectral-inspirerad webbplats</small>
 </footer>
+
+<script>
+  function toggleMenu(hamburger) {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('active');
+    hamburger.classList.toggle('open');
+  }
+</script>
 
 </body>
 </html>
