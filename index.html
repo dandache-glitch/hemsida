@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Spectral – Ideell Förening för Ungdomar</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ideell Förening – Ungdomar</title>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -17,182 +14,49 @@
       --accent-dark: #3b82f6;
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
-      --border-soft: rgba(255,255,255,0.08);
       --btn-radius: 999px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    body { margin:0; font-family:'Source Sans 3', sans-serif; background:var(--bg); color:var(--text-main); line-height:1.6;}
 
-    body {
-      margin: 0;
-      font-family: 'Source Sans 3', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-
-    /* Header och navigation */
     header {
-      position: sticky;
-      top: 0;
-      background: rgba(15,17,22,0.85);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border-soft);
-      z-index: 10;
+      position: sticky; top:0; background: rgba(15,17,22,0.85); backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(255,255,255,0.08); z-index:10;
     }
+    nav { max-width:1100px; margin:0 auto; padding:0.8rem 1.5rem; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:1rem;}
+    .menu-links { display:flex; gap:1rem; flex-wrap:wrap;}
+    .menu-links a { padding:0.6rem 1.4rem; border-radius: var(--btn-radius); border:1px solid var(--accent); color:var(--text-main); font-weight:600; letter-spacing:0.05em; transition:all 0.3s; text-transform:uppercase; font-size:0.85rem; text-decoration:none;}
+    .menu-links a:hover { background:var(--accent); color:#020617; transform:scale(1.05); box-shadow:0 0 10px var(--accent);}
+    .hamburger { display:none; flex-direction:column; cursor:pointer; gap:5px; margin-left:auto;}
+    .hamburger div { width:25px; height:3px; background:var(--text-main); transition:0.3s;}
 
-    nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0.8rem 1.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+    /* Hero-sektion */
+    .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; background:url('https://source.unsplash.com/1600x900/?youth,community') no-repeat center/cover; position:relative; color:var(--text-main);}
+    .hero::before { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(15,17,22,0.7);}
+    .hero .content { position:relative; max-width:700px; animation:fadeInUp 1s forwards;}
+    .hero h1 { font-size:2.8rem; margin-bottom:1rem; background:linear-gradient(90deg,var(--accent),var(--accent-dark)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
+    .hero p { font-size:1.2rem; margin-bottom:1.5rem; color:var(--text-main);}
 
-    .menu-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .menu-links a {
-      padding: 0.6rem 1.4rem;
-      border-radius: var(--btn-radius);
-      border: 1px solid var(--accent);
-      color: var(--text-main);
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      text-decoration: none;
-    }
-
-    .menu-links a:hover {
-      background: var(--accent);
-      color: #020617;
-      transform: scale(1.05);
-      box-shadow: 0 0 10px var(--accent);
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-      margin-left: auto;
-    }
-
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background: var(--text-main);
-      transition: 0.3s;
-    }
+    .btn { display:inline-block; padding:0.8rem 2rem; border-radius:var(--btn-radius); border:1px solid var(--accent); color:var(--text-main); font-weight:600; text-decoration:none; transition:all 0.3s;}
+    .btn:hover { background:var(--accent); color:#020617; transform:scale(1.05); box-shadow:0 0 10px var(--accent);}
 
     /* Sektioner */
-    section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6rem 1.5rem;
-      text-align: center;
-      background: var(--section-bg);
-      transition: transform 0.5s ease, background 0.5s ease;
-    }
+    section { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; background:var(--section-bg);}
+    section:nth-child(even) { background:var(--bg);}
+    .content { max-width:720px; opacity:0; transform:translateY(50px); animation:fadeInUp 1s forwards;}
+    @keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
 
-    section:nth-child(even) {
-      background: var(--bg);
-    }
+    h2 { letter-spacing:0.1em; text-transform:uppercase; background:linear-gradient(90deg,var(--accent),var(--accent-dark)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:1rem;}
+    p { color:var(--text-muted); font-size:1.05rem; margin:1rem 0;}
+    ul { text-align:left; margin:1rem 0 0 0; padding-left:1.5rem; color:var(--text-muted);}
+    ul li { margin:0.5rem 0; }
 
-    .content {
-      max-width: 720px;
-      opacity: 0;
-      transform: translateY(50px);
-      animation: fadeInUp 1s forwards;
-    }
+    footer { text-align:center; padding:2rem 1.5rem; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.08);}
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    h1, h2 {
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      margin: 1rem 0;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 2rem;
-      margin-top: 1rem;
-      border-radius: var(--btn-radius);
-      border: 1px solid var(--accent);
-      color: var(--text-main);
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-      background: var(--accent);
-      color: #020617;
-      box-shadow: 0 0 10px var(--accent);
-      transform: scale(1.05);
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border-soft);
-    }
-
-    /* Responsiv meny */
-    @media (max-width: 768px) {
-      .menu-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 10px;
-        gap: 0;
-      }
-
-      .menu-links a {
-        padding: 0.8rem;
-        text-align: center;
-        border-radius: 0;
-      }
-
-      .menu-links.active {
-        display: flex;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-
-    @media (max-width: 480px) {
-      section { padding: 4rem 1rem; }
-    }
+    @media (max-width:768px) { .menu-links { display:none; flex-direction:column; width:100%; margin-top:10px; gap:0;} .menu-links a{padding:0.8rem;text-align:center;border-radius:0;} .menu-links.active{display:flex;} .hamburger{display:flex;} .hero h1{font-size:2rem;} .hero p{font-size:1rem;} }
+    @media (max-width:480px){section{padding:4rem 1rem;} .hero h1{font-size:1.6rem;} .hero p{font-size:0.9rem;}}
 
   </style>
 </head>
@@ -207,7 +71,6 @@
       <a href="#medlem">Bli Medlem</a>
       <a href="#kontakt">Kontakta Oss</a>
     </div>
-
     <div class="hamburger" onclick="toggleMenu(this)">
       <div></div>
       <div></div>
@@ -216,25 +79,29 @@
   </nav>
 </header>
 
+<section class="hero">
+  <div class="content">
+    <h1>Tillsammans skapar vi en tryggare framtid</h1>
+    <p>Vi stöttar, motiverar och erbjuder aktiviteter för unga i alla situationer.</p>
+  </div>
+</section>
+
 <section id="om">
   <div class="content">
-    <h1>Vi finns för ungdomar</h1>
+    <h2>Om oss</h2>
     <p>Vi är en ideell förening som stöttar ungdomar att göra positiva val i livet. Genom socialt stöd, coachning och aktiviteter hjälper vi unga att bygga självförtroende, hitta riktning och undvika riskfyllda situationer.</p>
-    <p><strong>Våra fokusområden:</strong></p>
     <ul>
       <li><strong>Individuellt stöd:</strong> Samtal, coachning och motivation.</li>
       <li><strong>Förebyggande insatser:</strong> Workshops, skolbesök och gruppaktiviteter.</li>
       <li><strong>Samhällsorientering:</strong> Stöd med utbildning, praktik och vardagsstruktur.</li>
       <li><strong>Samarbete:</strong> Vi arbetar med skolor, myndigheter och lokala organisationer.</li>
     </ul>
-    <a href="#medlem" class="btn">Bli medlem</a>
   </div>
 </section>
 
 <section id="tjanster">
   <div class="content">
     <h2>Vad vi erbjuder</h2>
-    <p>Vi erbjuder aktiviteter, mentorprogram, coachning och rådgivning som hjälper ungdomar att växa, utvecklas och skapa positiva vanor.</p>
     <ul>
       <li>Mentorprogram med erfarna volontärer</li>
       <li>Digitala workshops och föreläsningar</li>
@@ -254,8 +121,7 @@
   <div class="content">
     <h2>Bli en del av vår gemenskap</h2>
     <p>Som medlem får du tillgång till information, aktiviteter och möjligheten att bidra till vår vision – en tryggare framtid för ungdomar.</p>
-    <a href="#kontakt" class="btn">Kontakta oss</a>
-  </div>
+</div>
 </section>
 
 <section id="kontakt">
