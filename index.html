@@ -20,6 +20,10 @@
 
     * { box-sizing: border-box; }
 
+    html {
+      scroll-behavior: smooth; /* Smooth scroll mellan sektioner */
+    }
+
     body {
       margin: 0;
       font-family: 'Source Sans 3', system-ui, sans-serif;
@@ -54,7 +58,7 @@
       color: var(--text-main);
       font-weight: 600;
       letter-spacing: 0.05em;
-      transition: all 0.25s ease;
+      transition: all 0.3s ease;
       text-transform: uppercase;
       font-size: 0.8rem;
       text-decoration: none;
@@ -63,6 +67,7 @@
     nav a:hover {
       background: var(--accent);
       color: #020617;
+      transform: scale(1.05);
     }
 
     section {
@@ -70,22 +75,41 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 4rem 1.5rem;
+      padding: 6rem 1.5rem;
       text-align: center;
+      transition: transform 0.5s ease, background 0.5s ease;
+    }
+
+    section:hover {
+      transform: scale(1.02);
     }
 
     .content {
       max-width: 720px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h1, h2 {
       letter-spacing: 0.1em;
       text-transform: uppercase;
+      background: linear-gradient(90deg, #7dd3fc, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     p {
       color: var(--text-muted);
       font-size: 1.05rem;
+      margin: 1rem 0;
     }
 
     footer {
@@ -93,6 +117,19 @@
       padding: 2rem 1.5rem;
       color: var(--text-muted);
       border-top: 1px solid var(--border-soft);
+    }
+
+    /* Lätt parallax-bakgrund på sektioner */
+    #om { background: rgba(15,17,22,0.95); }
+    #tjanster { background: rgba(15,17,22,0.9); }
+    #samarbeten { background: rgba(15,17,22,0.85); }
+    #medlem { background: rgba(15,17,22,0.9); }
+    #kontakt { background: rgba(15,17,22,0.95); }
+
+    /* Responsivitet */
+    @media (max-width: 768px) {
+      nav a { font-size: 0.75rem; padding: 0.5rem 1rem; }
+      section { padding: 4rem 1rem; }
     }
   </style>
 </head>
@@ -111,68 +148,12 @@
 <section id="om">
   <div class="content">
     <h1>Om Oss</h1>
-
     <p><strong>Vad vi gör</strong></p>
     <p>
-      Socialt stöd &amp; motivation – samtal och individuell coachning<br />
-      Brottsförebyggande insatser – hjälp med att bryta kriminalitet<br />
-      Samhällsorientering – stöd i vardagsstruktur, arbete och utbildning<br />
-      Informations- och motivationsinsatser – till ungdomar som riskerar kriminalitet<br />
-      Samverkan med myndigheter och civilsamhället – frivården, socialtjänst, lokala organisationer
+      Socialt stöd & motivation, brottsförebyggande insatser, samhällsorientering och samverkan med myndigheter.
     </p>
-
-    <p><strong>Vad vi gör konkret – steg för steg</strong></p>
-
-    <p><strong>1. Individuellt stöd till vuxna med kriminell bakgrund</strong></p>
-    <p>
-      • Strukturerade 1–1-samtal, till exempel veckovis<br />
-      • Fokus på motivation till förändring, ansvarstagande och livsval<br />
-      • Identifiera riskfaktorer för återfall och hur de kan hanteras<br />
-      • Praktiskt stöd i vardagen: hyra, bank, myndighetskontakter
-    </p>
-
-    <p><strong>2. Kris- och återfallsprevention</strong></p>
-    <p>
-      När en deltagare riskerar återfall erbjuder vi:<br />
-      • Akuta samtal och stöd<br />
-      • Hjälp att ta kontakt med myndigheter eller socialtjänst<br />
-      • Planering för en alternativ väg framåt
-    </p>
-
-    <p><strong>3. Arbetsliv och samhällsetablering</strong></p>
-    <p>
-      • Hjälp med CV, jobbsökning och praktikplatser<br />
-      • Tips om utbildningar och kurser<br />
-      • Mentorprogram där personer med egen erfarenhet stöttar och motiverar
-    </p>
-
-    <p><strong>4. Förebyggande insatser för unga</strong></p>
-    <p>
-      • Skolbesök och föreläsningar om konsekvenser av kriminalitet<br />
-      • Motivation till positiva val och utbildning<br />
-      • Workshops och gruppsamtal i riskmiljöer
-    </p>
-
-    <p><strong>Samverkan &amp; rådgivande nätverk</strong></p>
-    <p>
-      Vi samarbetar med:<br />
-      • Kriminalvården / frivården<br />
-      • Socialtjänst<br />
-      • Lokala föreningar och arbetsplatser
-    </p>
-
-    <p>
-      Vi har även ett rådgivande nätverk med kompetens inom:<br />
-      • Socialt arbete<br />
-      • Juridik<br />
-      • Psykologi och terapi<br />
-      • Arbetsliv
-    </p>
-
-    <p>
-      <em>Kort sagt:</em> vi stöttar individer praktiskt och socialt, minskar risken för återfall i kriminalitet
-      och sprider kunskap och motivation till unga som riskerar att hamna i samma mönster.
-    </p>
+    <p><strong>Vad vi gör konkret</strong></p>
+    <p>1. Individuellt stöd, 2. Kris- och återfallsprevention, 3. Arbetsliv och samhällsetablering, 4. Förebyggande insatser för unga.</p>
   </div>
 </section>
 
@@ -180,8 +161,7 @@
   <div class="content">
     <h2>Tjänster</h2>
     <p>
-      Vi erbjuder skräddarsydda lösningar, rådgivning och digitala tjänster
-      anpassade efter dina behov.
+      Vi erbjuder skräddarsydda lösningar, rådgivning och digitala tjänster anpassade efter dina behov.
     </p>
   </div>
 </section>
@@ -190,8 +170,7 @@
   <div class="content">
     <h2>Samarbeten</h2>
     <p>
-      Vi arbetar tillsammans med partners och organisationer som delar
-      våra värderingar och vår ambition att skapa långsiktigt värde.
+      Vi arbetar tillsammans med partners och organisationer som delar våra värderingar och ambitionen att skapa långsiktigt värde.
     </p>
   </div>
 </section>
@@ -200,8 +179,7 @@
   <div class="content">
     <h2>Bli Medlem</h2>
     <p>
-      Som medlem får du tillgång till exklusivt innehåll, erbjudanden och
-      gemenskap. Anslut dig och bli en del av något större.
+      Som medlem får du tillgång till exklusivt innehåll, erbjudanden och gemenskap.
     </p>
   </div>
 </section>
@@ -211,7 +189,6 @@
     <h2>Kontakta Oss</h2>
     <p>
       Hör gärna av dig till oss med frågor eller samarbeten.
-      Vi ser fram emot att komma i kontakt med dig.
     </p>
   </div>
 </section>
