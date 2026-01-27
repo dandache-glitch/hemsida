@@ -34,25 +34,22 @@
     .hamburger div { width:25px; height:3px; background:var(--text-main); transition:0.3s;}
 
     /* Hero-sektion */
-    .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; background:url('https://source.unsplash.com/1600x900/?youth,community') no-repeat center/cover; position:relative; color:var(--text-main);}
-    .hero::before { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(rgba(15,17,22,0.7), rgba(15,17,22,0.7)); }
-    .hero .content { position:relative; max-width:var(--max-content-width); animation:fadeInUp 1s forwards;}
+    .hero { min-height:90vh; display:flex; align-items:center; justify-content:center; text-align:center; background:var(--bg); color:var(--text-main);}
+    .hero .content { max-width:var(--max-content-width); animation:fadeInUp 1s forwards;}
 
-    /* Hero logga större */
-    .hero-logo { max-width:300px; width:100%; margin-bottom:2rem; animation:fadeInScale 1s forwards;}
-
-    .hero h1 { font-size:42px; margin-bottom:1rem; }
-    .hero p { font-size:20px; margin-bottom:1rem; color:var(--text-main); text-align:center; }
+    /* Hero rubrik och text */
+    .hero h1 { font-size:42px; margin-bottom:1rem; text-align:center; }
+    .hero p { font-size:20px; margin-bottom:1rem; text-align:center; color:var(--text-main); }
 
     .btn { display:inline-block; padding:0.8rem 2rem; border-radius:var(--btn-radius); border:1px solid var(--accent); color:var(--text-main); font-weight:600; text-decoration:none; transition:all 0.3s;}
     .btn:hover { background:var(--accent); color:#020617; transform:scale(1.05); box-shadow:0 0 10px var(--accent);}
 
     /* Sektioner */
-    section { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; background:var(--section-bg);}
+    section { min-height:80vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; background:var(--section-bg);}
     section:nth-child(even) { background:var(--bg);}
     .content { max-width:var(--max-content-width); opacity:0; transform:translateY(50px); animation:fadeInUp 1s forwards; margin:0 auto; text-align:center;}
 
-    /* Rubriker – samma stil som hero-rubrik */
+    /* Rubriker */
     h1, h2 {
       font-size:36px;
       letter-spacing:0.05em;
@@ -65,7 +62,7 @@
       text-align:center;
     }
 
-    /* Brödtext under rubriker – samma stil som hero-text */
+    /* Brödtext */
     p, ul, li { font-size:20px; color:var(--text-main); line-height:1.7; margin:1rem 0; text-align:center; }
     ul { margin:1rem 0 0 0; padding-left:0; list-style: none; }
     ul li { margin:0.5rem 0; }
@@ -73,7 +70,6 @@
     footer { text-align:center; padding:2rem 1.5rem; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.08);}
 
     @keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeInScale { 0% { opacity:0; transform:scale(0.8);} 100% {opacity:1; transform:scale(1);} }
 
     @media (max-width:768px){
       .menu-links { display:none; flex-direction:column; width:100%; margin-top:10px; gap:0;}
@@ -82,14 +78,12 @@
       .hamburger{display:flex;}
       .hero h1{font-size:32px;}
       .hero p{font-size:18px;}
-      .hero-logo { max-width:220px; }
       p, ul, li { font-size:18px; }
     }
     @media (max-width:480px){
       section{padding:4rem 1rem;}
       .hero h1{font-size:28px;}
       .hero p{font-size:16px;}
-      .hero-logo { max-width:180px; }
       p, ul, li { font-size:16px; }
     }
   </style>
@@ -114,23 +108,20 @@
 
 <section class="hero">
   <div class="content">
-    <!-- Logga -->
-    <img src="IMG_0743.jpeg" alt="Föreningens logga" class="hero-logo">
-
-    <!-- Huvudtext -->
     <h1>Tillsammans skapar vi en tryggare framtid</h1>
-    <p>Vi stöttar, motiverar och erbjuder aktiviteter för unga i alla situationer.</p>
-    <p>Vår mission är att ge ungdomar verktygen och stödet de behöver för att göra positiva val och utvecklas i en trygg miljö.</p>
-    <p>Genom mentorprogram, workshops och samverkan med skolor och myndigheter skapar vi möjligheter och trygghet för unga över hela landet.</p>
-    <p>Bli en del av vår gemenskap och hjälp oss att sprida motivation, kunskap och positiv energi till nästa generation.</p>
+    <p>Vi stöttar, motiverar och erbjuder aktiviteter för ungdomar i alla situationer.</p>
+    <p>Vi möter ungdomar dagligen, lyssnar på deras behov och erbjuder vägledning för att hjälpa dem göra positiva val.</p>
+    <p>Vår erfarenhet kommer från egna liknande bakgrunder, vilket gör att ungdomar litar på oss och känner sig trygga i vår gemenskap.</p>
+    <p>Genom samarbeten med skolor, fritidsgårdar, myndigheter och ideella organisationer arbetar vi för att Sverige ska bli en tryggare plats där ungdomar utvecklas och undviker kriminalitet.</p>
   </div>
 </section>
 
 <section id="om">
   <div class="content">
     <h2>Om oss</h2>
-    <p>Vi är en ideell förening som hjälper ungdomar som riskerar att hamna i kriminalitet. Vi finns där ungdomarna är – på torg, skolor och i lokalsamhället.</p>
-    <p>Vi erbjuder mentorprogram, individuellt stöd, coachning, föreläsningar och aktiviteter som stärker ungdomars självkänsla och framtidstro.</p>
+    <p>Vi är en ideell förening med lång erfarenhet av arbete med ungdomar i riskzoner. Vårt team består av personer som själva har erfarenhet av att övervinna svåra situationer, vilket gör att vi kan erbjuda äkta förståelse, motivation och stöd.</p>
+    <p>Vår vision är att skapa trygga miljöer där ungdomar kan växa, utvecklas och känna tillhörighet. Vi erbjuder mentorprogram, coachning, motivationssamtal och fritidsaktiviteter som stärker självkänslan och förebygger kriminalitet.</p>
+    <p>Vi är stolta över våra starka samarbeten med kommuner, skolor, fritidsgårdar, myndigheter och ideella föreningar. Dessa partners hjälper oss att nå fler ungdomar och säkerställa hög kvalitet på våra insatser.</p>
   </div>
 </section>
 
@@ -138,10 +129,11 @@
   <div class="content">
     <h2>Vad vi erbjuder</h2>
     <ul>
-      <li>Mentorprogram med engagerade volontärer och förebilder</li>
-      <li>Workshops och skolbesök som förebygger kriminalitet</li>
-      <li>Individuellt stöd, coachning och motivationssamtal</li>
-      <li>Aktiviteter på fritiden som skapar gemenskap och positiva upplevelser</li>
+      <li>Mentorprogram och individuellt stöd med erfarna volontärer och förebilder</li>
+      <li>Workshops, skolbesök och motivationsföreläsningar som förebygger kriminalitet</li>
+      <li>Daglig kontakt med ungdomar på fritidsgårdar, torg och skolor</li>
+      <li>Aktiviteter som stärker gemenskap, självkänsla och positiva val</li>
+      <li>Rådgivning och stöd för att hjälpa ungdomar att hitta utbildning, jobb och meningsfull fritid</li>
     </ul>
   </div>
 </section>
@@ -149,8 +141,9 @@
 <section id="samarbeten">
   <div class="content">
     <h2>Samarbeten</h2>
-    <p>Vi samarbetar med kommuner, skolor, ideella föreningar och myndigheter för att skapa långsiktiga och trygga miljöer för ungdomar.</p>
-    <p>Våra partners hjälper oss att nå fler unga och utveckla verksamheten med hög kvalitet och omtanke.</p>
+    <p>Våra samarbeten är hjärtat i vårt arbete. Vi samarbetar nära med kommuner, skolor, fritidsgårdar, socialtjänst, kriminalvård och andra ideella föreningar.</p>
+    <p>Genom dessa nätverk kan vi snabbt identifiera behov, koordinera insatser och skapa långsiktiga lösningar som gör verklig skillnad för ungdomar.</p>
+    <p>Vi är omtyckta och respekterade i våra lokalsamhällen, och ungdomar känner att de kan lita på oss. Vår gemenskap bygger på respekt, trygghet och engagemang.</p>
   </div>
 </section>
 
