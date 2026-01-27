@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Spectral – Enkel Webbplats</title>
+  <title>Spectral – Ideell Förening för Ungdomar</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,14 +12,16 @@
   <style>
     :root {
       --bg: #0f1116;
+      --section-bg: #14151c;
       --accent: #7dd3fc;
+      --accent-dark: #3b82f6;
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
       --border-soft: rgba(255,255,255,0.08);
+      --btn-radius: 999px;
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -30,6 +32,7 @@
       line-height: 1.6;
     }
 
+    /* Header och navigation */
     header {
       position: sticky;
       top: 0;
@@ -42,9 +45,9 @@
     nav {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0.5rem 1.5rem;
+      padding: 0.8rem 1.5rem;
       display: flex;
-      justify-content: center; /* centrera menyn */
+      justify-content: center;
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
@@ -58,14 +61,14 @@
 
     .menu-links a {
       padding: 0.6rem 1.4rem;
-      border-radius: 999px;
+      border-radius: var(--btn-radius);
       border: 1px solid var(--accent);
       color: var(--text-main);
       font-weight: 600;
       letter-spacing: 0.05em;
       transition: all 0.3s ease;
       text-transform: uppercase;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       text-decoration: none;
     }
 
@@ -73,9 +76,9 @@
       background: var(--accent);
       color: #020617;
       transform: scale(1.05);
+      box-shadow: 0 0 10px var(--accent);
     }
 
-    /* Hamburger-knapp */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -99,7 +102,12 @@
       justify-content: center;
       padding: 6rem 1.5rem;
       text-align: center;
+      background: var(--section-bg);
       transition: transform 0.5s ease, background 0.5s ease;
+    }
+
+    section:nth-child(even) {
+      background: var(--bg);
     }
 
     .content {
@@ -119,15 +127,35 @@
     h1, h2 {
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      background: linear-gradient(90deg, #7dd3fc, #3b82f6);
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
     }
 
     p {
       color: var(--text-muted);
       font-size: 1.05rem;
       margin: 1rem 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      margin-top: 1rem;
+      border-radius: var(--btn-radius);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: #020617;
+      box-shadow: 0 0 10px var(--accent);
+      transform: scale(1.05);
     }
 
     footer {
@@ -165,6 +193,7 @@
     @media (max-width: 480px) {
       section { padding: 4rem 1rem; }
     }
+
   </style>
 </head>
 <body>
@@ -189,54 +218,56 @@
 
 <section id="om">
   <div class="content">
-    <h1>Om Oss</h1>
-    <p><strong>Vad vi gör</strong></p>
-    <p>
-      Socialt stöd & motivation, brottsförebyggande insatser, samhällsorientering och samverkan med myndigheter.
-    </p>
-    <p><strong>Vad vi gör konkret</strong></p>
-    <p>1. Individuellt stöd, 2. Kris- och återfallsprevention, 3. Arbetsliv och samhällsetablering, 4. Förebyggande insatser för unga.</p>
+    <h1>Vi finns för ungdomar</h1>
+    <p>Vi är en ideell förening som stöttar ungdomar att göra positiva val i livet. Genom socialt stöd, coachning och aktiviteter hjälper vi unga att bygga självförtroende, hitta riktning och undvika riskfyllda situationer.</p>
+    <p><strong>Våra fokusområden:</strong></p>
+    <ul>
+      <li><strong>Individuellt stöd:</strong> Samtal, coachning och motivation.</li>
+      <li><strong>Förebyggande insatser:</strong> Workshops, skolbesök och gruppaktiviteter.</li>
+      <li><strong>Samhällsorientering:</strong> Stöd med utbildning, praktik och vardagsstruktur.</li>
+      <li><strong>Samarbete:</strong> Vi arbetar med skolor, myndigheter och lokala organisationer.</li>
+    </ul>
+    <a href="#medlem" class="btn">Bli medlem</a>
   </div>
 </section>
 
 <section id="tjanster">
   <div class="content">
-    <h2>Tjänster</h2>
-    <p>
-      Vi erbjuder skräddarsydda lösningar, rådgivning och digitala tjänster anpassade efter dina behov.
-    </p>
+    <h2>Vad vi erbjuder</h2>
+    <p>Vi erbjuder aktiviteter, mentorprogram, coachning och rådgivning som hjälper ungdomar att växa, utvecklas och skapa positiva vanor.</p>
+    <ul>
+      <li>Mentorprogram med erfarna volontärer</li>
+      <li>Digitala workshops och föreläsningar</li>
+      <li>Stöd för unga i riskmiljöer</li>
+    </ul>
   </div>
 </section>
 
 <section id="samarbeten">
   <div class="content">
-    <h2>Samarbeten</h2>
-    <p>
-      Vi arbetar tillsammans med partners och organisationer som delar våra värderingar och ambitionen att skapa långsiktigt värde.
-    </p>
+    <h2>Vi arbetar tillsammans</h2>
+    <p>Vi samarbetar med skolor, myndigheter, lokala föreningar och arbetsplatser för att skapa långsiktiga möjligheter för ungdomar.</p>
   </div>
 </section>
 
 <section id="medlem">
   <div class="content">
-    <h2>Bli Medlem</h2>
-    <p>
-      Som medlem får du tillgång till exklusivt innehåll, erbjudanden och gemenskap.
-    </p>
+    <h2>Bli en del av vår gemenskap</h2>
+    <p>Som medlem får du tillgång till information, aktiviteter och möjligheten att bidra till vår vision – en tryggare framtid för ungdomar.</p>
+    <a href="#kontakt" class="btn">Kontakta oss</a>
   </div>
 </section>
 
 <section id="kontakt">
   <div class="content">
-    <h2>Kontakta Oss</h2>
-    <p>
-      Hör gärna av dig till oss med frågor eller samarbeten.
-    </p>
+    <h2>Hör av dig</h2>
+    <p>Vi vill höra från dig! Kontakta oss om du vill samarbeta, engagera dig som volontär eller har frågor.</p>
+    <a href="mailto:info@förening.se" class="btn">Skicka e-post</a>
   </div>
 </section>
 
 <footer>
-  <small>&copy; 2026 – Spectral-inspirerad webbplats</small>
+  <small>&copy; 2026 – Ideell förening för ungdomar</small>
 </footer>
 
 <script>
