@@ -11,8 +11,8 @@
 
   <style>
     :root {
-      --bg: #0f1116; /* Ursprunglig mörk bakgrund */
-      --accent: #7dd3fc; /* Knapp accent */
+      --bg: #0f1116;
+      --accent: #7dd3fc;
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
       --border-soft: rgba(255,255,255,0.08);
@@ -20,9 +20,7 @@
 
     * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -46,31 +44,10 @@
       margin: 0 auto;
       padding: 0.5rem 1.5rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center; /* centrera menyn */
       align-items: center;
       flex-wrap: wrap;
-    }
-
-    /* Egen logga som cirkel med gradient */
-    .logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #7dd3fc, #3b82f6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: white;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      box-shadow: 0 0 15px rgba(125,211,252,0.5);
-      transition: transform 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.1);
+      gap: 1rem;
     }
 
     .menu-links {
@@ -104,6 +81,7 @@
       flex-direction: column;
       cursor: pointer;
       gap: 5px;
+      margin-left: auto;
     }
 
     .hamburger div {
@@ -182,8 +160,6 @@
       .hamburger {
         display: flex;
       }
-
-      .logo { width: 60px; height: 60px; font-size: 1.2rem; }
     }
 
     @media (max-width: 480px) {
@@ -195,20 +171,18 @@
 
 <header>
   <nav>
-    <div class="logo">S</div> <!-- Egen logga med bokstav som symbol -->
-
-    <div class="hamburger" onclick="toggleMenu(this)">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-
     <div class="menu-links" id="menu">
       <a href="#om">Om Oss</a>
       <a href="#tjanster">Tjänster</a>
       <a href="#samarbeten">Samarbeten</a>
       <a href="#medlem">Bli Medlem</a>
       <a href="#kontakt">Kontakta Oss</a>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   </nav>
 </header>
