@@ -39,10 +39,9 @@
     .hero .content { position:relative; max-width:var(--max-content-width); animation:fadeInUp 1s forwards;}
 
     /* Hero logga större */
-    .hero-logo { max-width:250px; width:100%; margin-bottom:2rem; }
+    .hero-logo { max-width:300px; width:100%; margin-bottom:2rem; animation:fadeInScale 1s forwards;}
 
     .hero h1 { font-size:42px; margin-bottom:1rem; }
-
     .hero p { font-size:20px; margin-bottom:1rem; color:var(--text-main); text-align:center; }
 
     .btn { display:inline-block; padding:0.8rem 2rem; border-radius:var(--btn-radius); border:1px solid var(--accent); color:var(--text-main); font-weight:600; text-decoration:none; transition:all 0.3s;}
@@ -67,19 +66,14 @@
     }
 
     /* Brödtext under rubriker – samma stil som hero-text */
-    p, ul, li {
-      font-size:20px;
-      color:var(--text-main);
-      line-height:1.7;
-      margin:1rem 0;
-      text-align:center;
-    }
+    p, ul, li { font-size:20px; color:var(--text-main); line-height:1.7; margin:1rem 0; text-align:center; }
     ul { margin:1rem 0 0 0; padding-left:0; list-style: none; }
     ul li { margin:0.5rem 0; }
 
     footer { text-align:center; padding:2rem 1.5rem; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.08);}
 
     @keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeInScale { 0% { opacity:0; transform:scale(0.8);} 100% {opacity:1; transform:scale(1);} }
 
     @media (max-width:768px){
       .menu-links { display:none; flex-direction:column; width:100%; margin-top:10px; gap:0;}
@@ -88,14 +82,14 @@
       .hamburger{display:flex;}
       .hero h1{font-size:32px;}
       .hero p{font-size:18px;}
-      .hero-logo { max-width:180px; }
+      .hero-logo { max-width:220px; }
       p, ul, li { font-size:18px; }
     }
     @media (max-width:480px){
       section{padding:4rem 1rem;}
       .hero h1{font-size:28px;}
       .hero p{font-size:16px;}
-      .hero-logo { max-width:140px; }
+      .hero-logo { max-width:180px; }
       p, ul, li { font-size:16px; }
     }
   </style>
@@ -108,8 +102,7 @@
       <a href="#om">Om Oss</a>
       <a href="#tjanster">Tjänster</a>
       <a href="#samarbeten">Samarbeten</a>
-      <a href="#medlem">Bli Medlem</a>
-      <a href="#kontakt">Kontakta Oss</a>
+      <a href="#kontakt">Kontakt</a>
     </div>
     <div class="hamburger" onclick="toggleMenu(this)">
       <div></div>
@@ -136,13 +129,8 @@
 <section id="om">
   <div class="content">
     <h2>Om oss</h2>
-    <p>Vi är en ideell förening som stöttar ungdomar att göra positiva val i livet. Genom socialt stöd, coachning och aktiviteter hjälper vi unga att bygga självförtroende, hitta riktning och undvika riskfyllda situationer.</p>
-    <ul>
-      <li><strong>Individuellt stöd:</strong> Samtal, coachning och motivation.</li>
-      <li><strong>Förebyggande insatser:</strong> Workshops, skolbesök och gruppaktiviteter.</li>
-      <li><strong>Samhällsorientering:</strong> Stöd med utbildning, praktik och vardagsstruktur.</li>
-      <li><strong>Samarbete:</strong> Vi arbetar med skolor, myndigheter och lokala organisationer.</li>
-    </ul>
+    <p>Vi är en ideell förening som hjälper ungdomar som riskerar att hamna i kriminalitet. Vi finns där ungdomarna är – på torg, skolor och i lokalsamhället.</p>
+    <p>Vi erbjuder mentorprogram, individuellt stöd, coachning, föreläsningar och aktiviteter som stärker ungdomars självkänsla och framtidstro.</p>
   </div>
 </section>
 
@@ -150,32 +138,32 @@
   <div class="content">
     <h2>Vad vi erbjuder</h2>
     <ul>
-      <li>Mentorprogram med erfarna volontärer</li>
-      <li>Digitala workshops och föreläsningar</li>
-      <li>Stöd för unga i riskmiljöer</li>
+      <li>Mentorprogram med engagerade volontärer och förebilder</li>
+      <li>Workshops och skolbesök som förebygger kriminalitet</li>
+      <li>Individuellt stöd, coachning och motivationssamtal</li>
+      <li>Aktiviteter på fritiden som skapar gemenskap och positiva upplevelser</li>
     </ul>
   </div>
 </section>
 
 <section id="samarbeten">
   <div class="content">
-    <h2>Vi arbetar tillsammans</h2>
-    <p>Vi samarbetar med skolor, myndigheter, lokala föreningar och arbetsplatser för att skapa långsiktiga möjligheter för ungdomar.</p>
-  </div>
-</section>
-
-<section id="medlem">
-  <div class="content">
-    <h2>Bli en del av vår gemenskap</h2>
-    <p>Som medlem får du tillgång till information, aktiviteter och möjligheten att bidra till vår vision – en tryggare framtid för ungdomar.</p>
+    <h2>Samarbeten</h2>
+    <p>Vi samarbetar med kommuner, skolor, ideella föreningar och myndigheter för att skapa långsiktiga och trygga miljöer för ungdomar.</p>
+    <p>Våra partners hjälper oss att nå fler unga och utveckla verksamheten med hög kvalitet och omtanke.</p>
   </div>
 </section>
 
 <section id="kontakt">
   <div class="content">
-    <h2>Hör av dig</h2>
+    <h2>Kontakt & Lokaler</h2>
     <p>Vi vill höra från dig! Kontakta oss om du vill samarbeta, engagera dig som volontär eller har frågor.</p>
-    <a href="mailto:info@förening.se" class="btn">Skicka e-post</a>
+    <p><strong>E-post:</strong> info@foreing.se | <strong>Telefon:</strong> 012-345 6789</p>
+    <p><strong>Adress:</strong> Föreningsgatan 10, 111 22 Stockholm</p>
+    <div style="margin:2rem 0;">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.123456789!2d18.063!3d59.332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sFöreningslokal!5e0!3m2!1ssv!2sse!4v1610000000000!5m2!1ssv!2sse" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <a href="mailto:info@foreing.se" class="btn">Skicka e-post</a>
   </div>
 </section>
 
