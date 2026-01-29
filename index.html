@@ -27,6 +27,7 @@ body{
   line-height:1.7;
 }
 
+/* Header */
 header{
   position:sticky;
   top:0;
@@ -43,13 +44,20 @@ header div{
   position:relative;
 }
 
-header nav{
-  display:flex;
-  gap:0.5rem;
-  z-index:1;
+header img{
+  height:60px;
+  object-fit:contain;
+  position:absolute;
+  right:1.5rem;
 }
 
-header a{
+/* Navigering */
+.menu-links{
+  display:flex;
+  gap:0.5rem;
+}
+
+.menu-links a{
   color:var(--accent);
   text-decoration:none;
   font-weight:600;
@@ -57,16 +65,43 @@ header a{
   padding:0.5rem 1.4rem;
   border-radius:999px;
   font-size:0.85rem;
-  margin:0 0.5rem;
+  transition:0.3s;
 }
 
-header img{
-  height:60px; /* Större logga */
-  object-fit:contain;
-  position:absolute;
-  right:1.5rem;
+.menu-links a:hover{
+  background:var(--accent);
+  color:#020617;
+  transform:scale(1.05);
+  box-shadow:0 0 10px var(--accent);
 }
 
+/* Hamburger */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+  gap:5px;
+  margin-left:auto;
+}
+
+.hamburger div{
+  width:25px;
+  height:3px;
+  background:var(--text-main);
+  transition:0.3s;
+}
+
+.hamburger.open div:nth-child(1){
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.open div:nth-child(2){
+  opacity:0;
+}
+.hamburger.open div:nth-child(3){
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Sektioner */
 section{
   padding:4rem 1.5rem;
   display:flex;
@@ -80,7 +115,7 @@ section{
   margin-left: var(--content-margin);
   margin-right: var(--content-margin);
   text-align:left;
-  margin-top:4rem; /* Mer luft under header */
+  margin-top:4rem;
 }
 
 h1{
@@ -121,12 +156,15 @@ footer{
   background:var(--bg);
 }
 
-/* Mobilanpassning */
+/* Responsiv */
 @media(max-width:768px){
   h1{font-size:24px;}
   h2{font-size:20px;}
   li,p{font-size:16px;}
   .content{margin-left:1rem; margin-right:1rem;}
+  .menu-links{display:none; flex-direction:column; width:100%; margin-top:10px; text-align:center;}
+  .menu-links.active{display:flex;}
+  .hamburger{display:flex;}
 }
 
 @media(max-width:480px){
@@ -136,7 +174,7 @@ footer{
     padding:0.5rem 1rem;
   }
   header img{
-    height:50px; /* mindre på små skärmar */
+    height:50px;
     position:relative;
     right:0;
   }
@@ -159,15 +197,21 @@ footer{
 }
 </style>
 </head>
-
 <body>
 
 <header>
   <div>
     <nav>
-      <a href="index.html">Om Oss</a>
-      <a href="tjanster.html">Tjänster</a>
-      <a href="kontakt.html">Kontakt</a>
+      <div class="menu-links" id="menu">
+        <a href="index.html">Om Oss</a>
+        <a href="tjanster.html">Tjänster</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+      <div class="hamburger" onclick="toggleMenu(this)">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </nav>
     <img src="https://raw.githubusercontent.com/dandache-glitch/hemsida/main/logo.png" alt="Brytpunkten Logo">
   </div>
@@ -214,6 +258,14 @@ footer{
 <footer>
   <small>&copy; 2026 – Brytpunkten</small>
 </footer>
+
+<script>
+function toggleMenu(hamburger){
+  const menu = document.getElementById('menu');
+  menu.classList.toggle('active');
+  hamburger.classList.toggle('open');
+}
+</script>
 
 </body>
 </html>
