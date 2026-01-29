@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ideell Förening – Ungdomar</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:#0f1116;
+      --section-bg:#14151c;
+      --accent:#7dd3fc;
+      --accent-dark:#3b82f6;
+      --text-main:#e5e7eb;
+      --text-muted:#9ca3af;
+      --btn-radius:999px;
+      --max-content-width:720px;
+    }
+
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family:'Source Sans 3',sans-serif;
+      background:var(--bg);
+      color:var(--text-main);
+      line-height:1.7;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      background:rgba(15,17,22,0.85);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      z-index:10;
+    }
+
+    nav{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0.8rem 1.5rem;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:1rem;
+    }
+
+    .menu-links{
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+
+    .menu-links a{
+      padding:0.6rem 1.4rem;
+      border-radius:var(--btn-radius);
+      border:1px solid var(--accent);
+      color:var(--text-main);
+      font-weight:600;
+      letter-spacing:0.05em;
+      text-transform:uppercase;
+      font-size:0.85rem;
+      text-decoration:none;
+      transition:0.3s;
+    }
+
+    .menu-links a:hover{
+      background:var(--accent);
+      color:#020617;
+      box-shadow:0 0 10px var(--accent);
+    }
+
+    .hero{
+      min-height:90vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .content{
+      max-width:var(--max-content-width);
+      margin:0 auto;
+      text-align:center;
+    }
+
+    h1,h2{
+      font-size:36px;
+      text-transform:uppercase;
+      margin-bottom:1rem;
+      background:linear-gradient(90deg,var(--accent),var(--accent-dark));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    p,li{
+      font-size:20px;
+    }
+
+    section{
+      padding:6rem 1.5rem;
+      display:flex;
+      justify-content:center;
+      background:var(--section-bg);
+    }
+
+    section:nth-child(even){
+      background:var(--bg);
+    }
+
+    ul{
+      list-style:none;
+      padding:0;
+    }
+
+    footer{
+      text-align:center;
+      padding:2rem;
+      color:var(--text-muted);
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    @media(max-width:768px){
+      h1,h2{font-size:30px;}
+      p,li{font-size:18px;}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div class="menu-links">
+      <a href="#om">Om oss</a>
+      <a href="#tjanster">Tjänster</a>
+      <a href="#samarbeten">Samarbeten</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="content">
+    <h1>Tillsammans skapar vi en tryggare framtid</h1>
+    <p>Vi möter ungdomar där de är – lyssnar, stöttar och guidar dem till positiva val.</p>
+    <p>Genom närvaro, erfarenhet och samarbete bygger vi trygghet och framtidstro.</p>
+  </div>
+</section>
+
+<section id="om">
+  <div class="content">
+    <h2>Om oss</h2>
+    <p>
+      Vi är en ideell förening med lång erfarenhet av arbete med ungdomar i riskzoner.
+      Vårt team har egna erfarenheter av att övervinna svåra situationer.
+    </p>
+  </div>
+</section>
+
+<section id="tjanster">
+  <div class="content">
+    <h2>Vad vi erbjuder</h2>
+    <ul>
+      <li>Mentorprogram och individuellt stöd</li>
+      <li>Skolbesök och motivationsföreläsningar</li>
+      <li>Närvaro på fritidsgårdar och i lokalsamhället</li>
+      <li>Aktiviteter som stärker självkänsla och gemenskap</li>
+    </ul>
+  </div>
+</section>
+
+<section id="samarbeten">
+  <div class="content">
+    <h2>Samarbeten</h2>
+    <p>
+      Vi samarbetar med kommuner, skolor, fritidsgårdar,
+      socialtjänst och andra ideella organisationer.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <small>&copy; 2026 – Ideell förening för ungdomar</small>
+</footer>
+
+</body>
+</html>
