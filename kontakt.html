@@ -8,20 +8,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
+    :root{
       --bg:#0f1116;
       --section-bg:#14151c;
       --accent:#7dd3fc;
       --accent-dark:#3b82f6;
       --text-main:#e5e7eb;
       --text-muted:#9ca3af;
-      --btn-radius:999px;
-      --max-content-width:720px;
+      --radius:16px;
+      --max:720px;
     }
 
-    * { box-sizing:border-box; }
-
-    body {
+    *{box-sizing:border-box;}
+    body{
       margin:0;
       font-family:'Source Sans 3',sans-serif;
       background:var(--bg);
@@ -29,7 +28,7 @@
       line-height:1.7;
     }
 
-    header {
+    header{
       position:sticky;
       top:0;
       background:rgba(15,17,22,0.85);
@@ -40,12 +39,194 @@
       z-index:10;
     }
 
-    header a {
+    header a{
       color:var(--accent);
       text-decoration:none;
       font-weight:600;
-      text-transform:uppercase;
-      font-size:0.85rem;
       border:1px solid var(--accent);
       padding:0.5rem 1.4rem;
-      bor
+      border-radius:999px;
+      text-transform:uppercase;
+      font-size:0.85rem;
+    }
+
+    section{
+      padding:6rem 1.5rem 3rem;
+      display:flex;
+      justify-content:center;
+      background:var(--section-bg);
+      text-align:center;
+    }
+
+    .content{
+      max-width:var(--max);
+      width:100%;
+    }
+
+    h1,h2{
+      background:linear-gradient(90deg,var(--accent),var(--accent-dark));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      text-transform:uppercase;
+    }
+
+    h1{font-size:36px;}
+    h2{margin-top:3rem;}
+
+    p{font-size:20px;}
+
+    form{
+      margin-top:2.5rem;
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+    }
+
+    input,textarea{
+      padding:1rem;
+      border-radius:var(--radius);
+      border:none;
+      font-size:16px;
+      font-family:inherit;
+    }
+
+    textarea{min-height:160px;}
+
+    button{
+      margin-top:1rem;
+      padding:1rem;
+      border-radius:999px;
+      border:1px solid var(--accent);
+      background:none;
+      color:var(--text-main);
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    button:hover{
+      background:var(--accent);
+      color:#020617;
+      box-shadow:0 0 10px var(--accent);
+    }
+
+    .info{
+      margin-top:2rem;
+    }
+
+    .opening-hours{
+      margin-top:2rem;
+      background:#0f1116;
+      padding:1.5rem;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:1rem;
+      margin-top:2rem;
+    }
+
+    .gallery img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:var(--radius);
+    }
+
+    #map{
+      margin-top:3rem;
+      height:320px;
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    footer{
+      text-align:center;
+      padding:2rem;
+      color:var(--text-muted);
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">← Tillbaka</a>
+</header>
+
+<section>
+  <div class="content">
+    <h1>Kontakt & Lokaler</h1>
+
+    <p>Kontakta oss om du vill samarbeta, engagera dig eller har frågor.</p>
+
+    <div class="info">
+      <p><strong>E-post:</strong> info@foreing.se | <strong>Telefon:</strong> 012-345 6789</p>
+      <p><strong>Adress:</strong> Föreningsgatan 10, 111 22 Stockholm</p>
+    </div>
+
+    <!-- FORMULÄR -->
+    <form action="send.php" method="post">
+      <input type="text" name="name" placeholder="Ditt namn" required>
+      <input type="email" name="email" placeholder="Din e-post" required>
+      <textarea name="message" placeholder="Skriv ditt meddelande..." required></textarea>
+      <button type="submit">Skicka meddelande</button>
+    </form>
+
+    <!-- ÖPPETTIDER -->
+    <div class="opening-hours">
+      <h2>Öppettider</h2>
+      <p>Måndag – Fredag: 14:00 – 21:00</p>
+      <p>Lördag: 12:00 – 18:00</p>
+      <p>Söndag: Stängt</p>
+    </div>
+
+    <!-- BILDER -->
+    <h2>Våra lokaler</h2>
+    <div class="gallery">
+      <img src="lokal1.jpg" alt="Vår lokal">
+      <img src="lokal2.jpg" alt="Aktivitetsyta">
+      <img src="lokal3.jpg" alt="Mötesrum">
+    </div>
+
+    <!-- KARTA -->
+    <div id="map"></div>
+
+  </div>
+</section>
+
+<footer>
+  <small>&copy; 2026 – Ideell förening för ungdomar</small>
+</footer>
+
+<!-- GOOGLE MAPS DARK MODE -->
+<script>
+function initMap() {
+  const location = { lat: 59.332, lng: 18.063 };
+
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15,
+    center: location,
+    styles: [
+      { elementType: "geometry", stylers: [{ color: "#1d1f27" }] },
+      { elementType: "labels.text.fill", stylers: [{ color: "#8ec3b9" }] },
+      { elementType: "labels.text.stroke", stylers: [{ color: "#1a3646" }] },
+      { featureType: "road", elementType: "geometry", stylers: [{ color: "#304a7d" }] },
+      { featureType: "water", elementType: "geometry", stylers: [{ color: "#0e1626" }] }
+    ]
+  });
+
+  new google.maps.Marker({ position: location, map: map });
+}
+</script>
+
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=DIN_API_NYCKEL&callback=initMap">
+</script>
+
+</body>
+</html>
