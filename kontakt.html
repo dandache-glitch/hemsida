@@ -8,101 +8,44 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body{
+    :root {
+      --bg:#0f1116;
+      --section-bg:#14151c;
+      --accent:#7dd3fc;
+      --accent-dark:#3b82f6;
+      --text-main:#e5e7eb;
+      --text-muted:#9ca3af;
+      --btn-radius:999px;
+      --max-content-width:720px;
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
       margin:0;
       font-family:'Source Sans 3',sans-serif;
-      background:#0f1116;
-      color:#e5e7eb;
+      background:var(--bg);
+      color:var(--text-main);
       line-height:1.7;
     }
 
-    header{
+    header {
+      position:sticky;
+      top:0;
+      background:rgba(15,17,22,0.85);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
       padding:1rem;
       text-align:center;
+      z-index:10;
     }
 
-    a{
-      color:#7dd3fc;
+    header a {
+      color:var(--accent);
       text-decoration:none;
       font-weight:600;
-    }
-
-    section{
-      min-height:90vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:2rem;
-      text-align:center;
-    }
-
-    h1{
-      font-size:36px;
-      margin-bottom:1rem;
-    }
-
-    form{
-      max-width:600px;
-      width:100%;
-      margin-top:2rem;
-      display:flex;
-      flex-direction:column;
-      gap:1rem;
-    }
-
-    input,textarea{
-      padding:1rem;
-      border-radius:12px;
-      border:none;
-      font-size:16px;
-    }
-
-    button{
-      padding:1rem;
-      border-radius:999px;
-      border:1px solid #7dd3fc;
-      background:none;
-      color:#e5e7eb;
-      font-weight:600;
-      cursor:pointer;
-    }
-
-    button:hover{
-      background:#7dd3fc;
-      color:#020617;
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <a href="index.html">← Tillbaka</a>
-</header>
-
-<section>
-  <div>
-    <h1>Kontakt & Lokaler</h1>
-
-    <p>
-      Vi vill höra från dig! Kontakta oss om du vill samarbeta,
-      engagera dig som volontär eller har frågor.
-    </p>
-
-    <p>
-      <strong>E-post:</strong> info@foreing.se |
-      <strong>Telefon:</strong> 012-345 6789<br>
-      <strong>Adress:</strong> Föreningsgatan 10, 111 22 Stockholm
-    </p>
-
-    <form action="mailto:info@foreing.se" method="post" enctype="text/plain">
-      <input type="text" name="Namn" placeholder="Ditt namn" required>
-      <input type="email" name="E-post" placeholder="Din e-post" required>
-      <textarea name="Meddelande" placeholder="Skriv ditt meddelande här..." required></textarea>
-      <button type="submit">Skicka e-post</button>
-    </form>
-  </div>
-</section>
-
-</body>
-</html>
+      text-transform:uppercase;
+      font-size:0.85rem;
+      border:1px solid var(--accent);
+      padding:0.5rem 1.4rem;
+      bor
