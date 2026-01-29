@@ -4,104 +4,142 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ideell Förening – Ungdomar</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #0f1116;
-      --section-bg: #14151c;
-      --accent: #7dd3fc;
-      --accent-dark: #3b82f6;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --btn-radius: 999px;
-      --max-content-width: 720px;
+      --bg:#0f1116;
+      --section-bg:#14151c;
+      --accent:#7dd3fc;
+      --accent-dark:#3b82f6;
+      --text-main:#e5e7eb;
+      --text-muted:#9ca3af;
+      --btn-radius:999px;
+      --max-content-width:720px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin:0; font-family:'Source Sans 3', sans-serif; background:var(--bg); color:var(--text-main); line-height:1.7;}
-
-    header {
-      position: sticky; top:0; background: rgba(15,17,22,0.85); backdrop-filter: blur(8px);
-      border-bottom:1px solid rgba(255,255,255,0.08); z-index:10;
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family:'Source Sans 3',sans-serif;
+      background:var(--bg);
+      color:var(--text-main);
+      line-height:1.7;
     }
-    nav { max-width:1100px; margin:0 auto; padding:0.8rem 1.5rem; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:1rem;}
-    .menu-links { display:flex; gap:1rem; flex-wrap:wrap;}
-    .menu-links a { padding:0.6rem 1.4rem; border-radius: var(--btn-radius); border:1px solid var(--accent); color:var(--text-main); font-weight:600; letter-spacing:0.05em; transition:all 0.3s; text-transform:uppercase; font-size:0.85rem; text-decoration:none;}
-    .menu-links a:hover { background:var(--accent); color:#020617; transform:scale(1.05); box-shadow:0 0 10px var(--accent);}
-    .hamburger { display:none; flex-direction:column; cursor:pointer; gap:5px; margin-left:auto;}
-    .hamburger div { width:25px; height:3px; background:var(--text-main); transition:0.3s;}
 
-    /* Hero-sektion */
-    .hero { min-height:90vh; display:flex; align-items:center; justify-content:center; text-align:center; background:var(--bg); color:var(--text-main);}
-    .hero .content { max-width:var(--max-content-width); animation:fadeInUp 1s forwards;}
+    header{
+      position:sticky;
+      top:0;
+      background:rgba(15,17,22,0.85);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      z-index:10;
+    }
 
-    /* Hero rubrik och text */
-    .hero h1 { font-size:42px; margin-bottom:1rem; text-align:center; }
-    .hero p { font-size:20px; margin-bottom:1rem; text-align:center; color:var(--text-main); }
+    nav{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0.8rem 1.5rem;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:1rem;
+    }
 
-    .btn { display:inline-block; padding:0.8rem 2rem; border-radius:var(--btn-radius); border:1px solid var(--accent); color:var(--text-main); font-weight:600; text-decoration:none; transition:all 0.3s;}
-    .btn:hover { background:var(--accent); color:#020617; transform:scale(1.05); box-shadow:0 0 10px var(--accent);}
+    .menu-links{
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
 
-    /* Sektioner */
-    section { min-height:80vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; background:var(--section-bg);}
-    section:nth-child(even) { background:var(--bg);}
-    .content { max-width:var(--max-content-width); opacity:0; transform:translateY(50px); animation:fadeInUp 1s forwards; margin:0 auto; text-align:center;}
-
-    /* Rubriker */
-    h1, h2 {
-      font-size:36px;
+    .menu-links a{
+      padding:0.6rem 1.4rem;
+      border-radius:var(--btn-radius);
+      border:1px solid var(--accent);
+      color:var(--text-main);
+      font-weight:600;
       letter-spacing:0.05em;
       text-transform:uppercase;
-      margin-bottom:1rem;
-      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+      font-size:0.85rem;
+      text-decoration:none;
+      transition:0.3s;
+    }
+
+    .menu-links a:hover{
+      background:var(--accent);
+      color:#020617;
+      box-shadow:0 0 10px var(--accent);
+    }
+
+    .hero{
+      min-height:90vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       text-align:center;
     }
 
-    /* Brödtext */
-    p, ul, li { font-size:20px; color:var(--text-main); line-height:1.7; margin:1rem 0; text-align:center; }
-    ul { margin:1rem 0 0 0; padding-left:0; list-style: none; }
-    ul li { margin:0.5rem 0; }
-
-    footer { text-align:center; padding:2rem 1.5rem; color:var(--text-muted); border-top:1px solid rgba(255,255,255,0.08);}
-
-    @keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
-
-    @media (max-width:768px){
-      .menu-links { display:none; flex-direction:column; width:100%; margin-top:10px; gap:0;}
-      .menu-links a{padding:0.8rem;text-align:center;border-radius:0;}
-      .menu-links.active{display:flex;}
-      .hamburger{display:flex;}
-      .hero h1{font-size:32px;}
-      .hero p{font-size:18px;}
-      p, ul, li { font-size:18px; }
+    .content{
+      max-width:var(--max-content-width);
+      margin:0 auto;
+      text-align:center;
     }
-    @media (max-width:480px){
-      section{padding:4rem 1rem;}
-      .hero h1{font-size:28px;}
-      .hero p{font-size:16px;}
-      p, ul, li { font-size:16px; }
+
+    h1,h2{
+      font-size:36px;
+      text-transform:uppercase;
+      margin-bottom:1rem;
+      background:linear-gradient(90deg,var(--accent),var(--accent-dark));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    p,li{
+      font-size:20px;
+    }
+
+    section{
+      padding:6rem 1.5rem;
+      display:flex;
+      justify-content:center;
+      background:var(--section-bg);
+    }
+
+    section:nth-child(even){
+      background:var(--bg);
+    }
+
+    ul{
+      list-style:none;
+      padding:0;
+    }
+
+    footer{
+      text-align:center;
+      padding:2rem;
+      color:var(--text-muted);
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    @media(max-width:768px){
+      h1,h2{font-size:30px;}
+      p,li{font-size:18px;}
     }
   </style>
 </head>
+
 <body>
 
 <header>
   <nav>
-    <div class="menu-links" id="menu">
-      <a href="#om">Om Oss</a>
+    <div class="menu-links">
+      <a href="#om">Om oss</a>
       <a href="#tjanster">Tjänster</a>
       <a href="#samarbeten">Samarbeten</a>
-      <a href="#kontakt">Kontakt</a>
-    </div>
-    <div class="hamburger" onclick="toggleMenu(this)">
-      <div></div>
-      <div></div>
-      <div></div>
+      <a href="kontakt.html">Kontakt</a>
     </div>
   </nav>
 </header>
@@ -109,19 +147,18 @@
 <section class="hero">
   <div class="content">
     <h1>Tillsammans skapar vi en tryggare framtid</h1>
-    <p>Vi stöttar, motiverar och erbjuder aktiviteter för ungdomar i alla situationer.</p>
-    <p>Vi möter ungdomar dagligen, lyssnar på deras behov och erbjuder vägledning för att hjälpa dem göra positiva val.</p>
-    <p>Vår erfarenhet kommer från egna liknande bakgrunder, vilket gör att ungdomar litar på oss och känner sig trygga i vår gemenskap.</p>
-    <p>Genom samarbeten med skolor, fritidsgårdar, myndigheter och ideella organisationer arbetar vi för att Sverige ska bli en tryggare plats där ungdomar utvecklas och undviker kriminalitet.</p>
+    <p>Vi möter ungdomar där de är – lyssnar, stöttar och guidar dem till positiva val.</p>
+    <p>Genom närvaro, erfarenhet och samarbete bygger vi trygghet och framtidstro.</p>
   </div>
 </section>
 
 <section id="om">
   <div class="content">
     <h2>Om oss</h2>
-    <p>Vi är en ideell förening med lång erfarenhet av arbete med ungdomar i riskzoner. Vårt team består av personer som själva har erfarenhet av att övervinna svåra situationer, vilket gör att vi kan erbjuda äkta förståelse, motivation och stöd.</p>
-    <p>Vår vision är att skapa trygga miljöer där ungdomar kan växa, utvecklas och känna tillhörighet. Vi erbjuder mentorprogram, coachning, motivationssamtal och fritidsaktiviteter som stärker självkänslan och förebygger kriminalitet.</p>
-    <p>Vi är stolta över våra starka samarbeten med kommuner, skolor, fritidsgårdar, myndigheter och ideella föreningar. Dessa partners hjälper oss att nå fler ungdomar och säkerställa hög kvalitet på våra insatser.</p>
+    <p>
+      Vi är en ideell förening med lång erfarenhet av arbete med ungdomar i riskzoner.
+      Vårt team har egna erfarenheter av att övervinna svåra situationer.
+    </p>
   </div>
 </section>
 
@@ -129,11 +166,10 @@
   <div class="content">
     <h2>Vad vi erbjuder</h2>
     <ul>
-      <li>Mentorprogram och individuellt stöd med erfarna volontärer och förebilder</li>
-      <li>Workshops, skolbesök och motivationsföreläsningar som förebygger kriminalitet</li>
-      <li>Daglig kontakt med ungdomar på fritidsgårdar, torg och skolor</li>
-      <li>Aktiviteter som stärker gemenskap, självkänsla och positiva val</li>
-      <li>Rådgivning och stöd för att hjälpa ungdomar att hitta utbildning, jobb och meningsfull fritid</li>
+      <li>Mentorprogram och individuellt stöd</li>
+      <li>Skolbesök och motivationsföreläsningar</li>
+      <li>Närvaro på fritidsgårdar och i lokalsamhället</li>
+      <li>Aktiviteter som stärker självkänsla och gemenskap</li>
     </ul>
   </div>
 </section>
@@ -141,36 +177,16 @@
 <section id="samarbeten">
   <div class="content">
     <h2>Samarbeten</h2>
-    <p>Våra samarbeten är hjärtat i vårt arbete. Vi samarbetar nära med kommuner, skolor, fritidsgårdar, socialtjänst, kriminalvård och andra ideella föreningar.</p>
-    <p>Genom dessa nätverk kan vi snabbt identifiera behov, koordinera insatser och skapa långsiktiga lösningar som gör verklig skillnad för ungdomar.</p>
-    <p>Vi är omtyckta och respekterade i våra lokalsamhällen, och ungdomar känner att de kan lita på oss. Vår gemenskap bygger på respekt, trygghet och engagemang.</p>
-  </div>
-</section>
-
-<section id="kontakt">
-  <div class="content">
-    <h2>Kontakt & Lokaler</h2>
-    <p>Vi vill höra från dig! Kontakta oss om du vill samarbeta, engagera dig som volontär eller har frågor.</p>
-    <p><strong>E-post:</strong> info@foreing.se | <strong>Telefon:</strong> 012-345 6789</p>
-    <p><strong>Adress:</strong> Föreningsgatan 10, 111 22 Stockholm</p>
-    <div style="margin:2rem 0;">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.123456789!2d18.063!3d59.332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sFöreningslokal!5e0!3m2!1ssv!2sse!4v1610000000000!5m2!1ssv!2sse" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-    <a href="mailto:info@foreing.se" class="btn">Skicka e-post</a>
+    <p>
+      Vi samarbetar med kommuner, skolor, fritidsgårdar,
+      socialtjänst och andra ideella organisationer.
+    </p>
   </div>
 </section>
 
 <footer>
   <small>&copy; 2026 – Ideell förening för ungdomar</small>
 </footer>
-
-<script>
-  function toggleMenu(hamburger) {
-    const menu = document.getElementById('menu');
-    menu.classList.toggle('active');
-    hamburger.classList.toggle('open');
-  }
-</script>
 
 </body>
 </html>
