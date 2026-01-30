@@ -12,7 +12,7 @@
   --accent:#7dd3fc;
   --text-main:#e5e7eb;
   --text-muted:#b0b4c0;
-  --max:900px;
+  --max:1000px;
   --content-margin:2rem;
 }
 
@@ -117,7 +117,7 @@ header img{height:70px;}
 .hero{
   position:relative;
   width:100%;
-  min-height:41vh; /* förminskad */
+  height:86vh; /* Desktop */
   overflow:hidden;
 }
 .hero img{
@@ -137,21 +137,19 @@ header img{height:70px;}
 
 /* CONTENT */
 section{
+  background:var(--section-bg);
   padding:5rem 1.5rem;
   display:flex;
   justify-content:center;
-  background:var(--section-bg);
 }
 .content{
   max-width:var(--max);
   width:100%;
-  margin-left:var(--content-margin);
-  margin-right:var(--content-margin);
+  margin-left: var(--content-margin);
+  margin-right: var(--content-margin);
   text-align:left;
-  margin-top:2rem;
 }
 h1{text-align:center;font-size:32px;color:var(--accent);margin-bottom:2rem;}
-h2{color:var(--accent);font-size:26px;margin-top:2.5rem;}
 p{font-size:18px;margin:0.5rem 0;}
 iframe{border:0;width:100%;height:300px;border-radius:12px;margin-top:1rem;}
 
@@ -159,9 +157,10 @@ iframe{border:0;width:100%;height:300px;border-radius:12px;margin-top:1rem;}
 footer{text-align:center;padding:2rem;color:var(--text-muted);border-top:1px solid rgba(255,255,255,0.08);background:var(--bg);}
 
 /* RESPONSIVE */
-@media(max-width:768px){
+@media(max-width:1024px){ .hero{height:75vh;} } /* laptops & tablets */
+@media(max-width:768px){ 
+  .hero{height:41vh;} /* mobil perfekt */
   h1{font-size:26px;}
-  h2{font-size:22px;}
   p{font-size:16px;}
   .menu-links{display:none;}
   .hamburger{display:flex;}
@@ -200,7 +199,7 @@ footer{text-align:center;padding:2rem;color:var(--text-muted);border-top:1px sol
 
 <section>
   <div class="content">
-    <h1>KONTAKTA OSS</h1>
+    <h1>Kontakta Oss</h1>
     <p><strong>Telefon:</strong> 012-345 6789</p>
     <p><strong>E-post:</strong> info@foreing.se</p>
     <h2>Våra lokaler</h2>
@@ -215,19 +214,16 @@ footer{text-align:center;padding:2rem;color:var(--text-muted);border-top:1px sol
 <script>
 const mobileMenu=document.getElementById('mobileMenu');
 const hamburger=document.querySelector('.hamburger');
-
 function toggleMenu(element){
   mobileMenu.classList.add('active');
   element.classList.add('open');
   document.body.style.overflow='hidden';
 }
-
 function closeMenu(){
   mobileMenu.classList.remove('active');
   hamburger.classList.remove('open');
   document.body.style.overflow='';
 }
-
 window.addEventListener("load",()=>{
   const img=document.getElementById("heroImg");
   img.style.opacity="1";
