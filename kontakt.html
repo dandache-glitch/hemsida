@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Brytpunkten – Kontakt</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --bg:#181b23;
@@ -13,20 +12,16 @@
   --accent:#7dd3fc;
   --text-main:#e5e7eb;
   --text-muted:#b0b4c0;
-  --max:1000px;
+  --max:900px;
+  --content-margin:2rem;
 }
 
+/* BASIC */
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{
-  margin:0;
-  font-family:'Source Sans 3',sans-serif;
-  background:var(--bg);
-  color:var(--text-main);
-  line-height:1.7;
-}
+body{margin:0;font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text-main);line-height:1.7;}
 
-/* ================= HEADER ================= */
+/* HEADER */
 header{
   position:sticky;
   top:0;
@@ -42,11 +37,7 @@ header{
   padding:1rem 2rem;
 }
 header img{height:70px;}
-
-.menu-links{
-  display:flex;
-  gap:0.8rem;
-}
+.menu-links{display:flex;gap:0.8rem;}
 .menu-links a{
   color:var(--accent);
   text-decoration:none;
@@ -63,14 +54,72 @@ header img{height:70px;}
   box-shadow:0 0 10px var(--accent);
 }
 
-/* ================= HERO ================= */
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger div{
+  width:25px;
+  height:3px;
+  background:var(--text-main);
+  transition:0.3s;
+}
+.hamburger.open div:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open div:nth-child(2){opacity:0;}
+.hamburger.open div:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* OVERLAY MENU */
+.overlay-menu{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:100%;
+  height:100%;
+  background:rgba(24,27,35,0.95);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2rem;
+  transition:right 0.3s ease-in-out;
+  z-index:20;
+}
+.overlay-menu.active{right:0;}
+.overlay-menu a{
+  font-size:22px;
+  padding:1rem 2rem;
+  border-radius:999px;
+  text-decoration:none;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  width:70%;
+  text-align:center;
+  transition:0.3s;
+}
+.overlay-menu a:hover{
+  background:var(--accent);
+  color:#020617;
+}
+.overlay-menu .close-btn{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:30px;
+  font-weight:bold;
+  cursor:pointer;
+  color:var(--accent);
+}
+
+/* HERO */
 .hero{
   position:relative;
   width:100%;
-  min-height:70vh;
+  min-height:41vh; /* förminskad */
   overflow:hidden;
 }
-
 .hero img{
   width:100%;
   height:100%;
@@ -79,93 +128,81 @@ header img{height:70px;}
   transform:scale(1.08);
   transition:opacity 1.5s ease, transform 2s ease;
 }
-
 .hero::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(24,27,35,0.45),
-    rgba(24,27,35,0.9)
-  );
+  background:linear-gradient(to bottom, rgba(24,27,35,0.35), rgba(24,27,35,0.85));
 }
 
-/* ================= CONTENT ================= */
+/* CONTENT */
 section{
-  background:var(--section-bg);
   padding:5rem 1.5rem;
   display:flex;
   justify-content:center;
+  background:var(--section-bg);
 }
-
 .content{
   max-width:var(--max);
-}
-
-h1, h2{
-  color:var(--accent);
-}
-
-h1{font-size:32px; margin-bottom:1rem; text-align:center;}
-h2{font-size:26px; margin-top:2.5rem;}
-
-p, li{
-  font-size:18px;
-  margin:0.6rem 0;
-}
-
-iframe{
   width:100%;
-  height:300px;
-  border:0;
-  border-radius:12px;
-  margin-top:1rem;
+  margin-left:var(--content-margin);
+  margin-right:var(--content-margin);
+  text-align:left;
+  margin-top:2rem;
 }
+h1{text-align:center;font-size:32px;color:var(--accent);margin-bottom:2rem;}
+h2{color:var(--accent);font-size:26px;margin-top:2.5rem;}
+p{font-size:18px;margin:0.5rem 0;}
+iframe{border:0;width:100%;height:300px;border-radius:12px;margin-top:1rem;}
 
-/* ================= FOOTER ================= */
-footer{
-  text-align:center;
-  padding:2rem;
-  color:var(--text-muted);
-  border-top:1px solid rgba(255,255,255,0.08);
-}
+/* FOOTER */
+footer{text-align:center;padding:2rem;color:var(--text-muted);border-top:1px solid rgba(255,255,255,0.08);background:var(--bg);}
 
-/* ================= RESPONSIVE ================= */
+/* RESPONSIVE */
 @media(max-width:768px){
   h1{font-size:26px;}
   h2{font-size:22px;}
-  p,li{font-size:16px;}
+  p{font-size:16px;}
   .menu-links{display:none;}
+  .hamburger{display:flex;}
 }
+@media(max-width:480px){header img{height:60px;}}
 </style>
 </head>
-
 <body>
 
 <header>
   <div class="header-container">
     <img src="https://raw.githubusercontent.com/dandache-glitch/hemsida/main/logo.png" alt="Brytpunkten">
-    <nav class="menu-links">
-      <a href="index.html">Om Oss</a>
-      <a href="tjanster.html">Tjänster</a>
-      <a href="kontakt.html">Kontakt</a>
+    <nav>
+      <div class="menu-links">
+        <a href="index.html">Om Oss</a>
+        <a href="tjanster.html">Tjänster</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+      <div class="hamburger" onclick="toggleMenu(this)">
+        <div></div><div></div><div></div>
+      </div>
     </nav>
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
+<div class="overlay-menu" id="mobileMenu">
+  <div class="close-btn" onclick="closeMenu()">×</div>
+  <a href="index.html">Om Oss</a>
+  <a href="tjanster.html">Tjänster</a>
+  <a href="kontakt.html">Kontakt</a>
+</div>
+
 <div class="hero">
   <img id="heroImg" src="https://raw.githubusercontent.com/dandache-glitch/hemsida/main/bild3.png" alt="Brytpunkten kontakt">
 </div>
 
-<!-- ================= INNEHÅLL ================= -->
 <section>
   <div class="content">
-    <h1>Kontakt</h1>
+    <h1>KONTAKTA OSS</h1>
     <p><strong>Telefon:</strong> 012-345 6789</p>
     <p><strong>E-post:</strong> info@foreing.se</p>
-
     <h2>Våra lokaler</h2>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.123456789!2d18.063!3d59.332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sFöreningslokal!5e0!3m2!1ssv!2sse!4v1610000000000!5m2!1ssv!2sse" allowfullscreen="" loading="lazy"></iframe>
   </div>
@@ -176,6 +213,21 @@ footer{
 </footer>
 
 <script>
+const mobileMenu=document.getElementById('mobileMenu');
+const hamburger=document.querySelector('.hamburger');
+
+function toggleMenu(element){
+  mobileMenu.classList.add('active');
+  element.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeMenu(){
+  mobileMenu.classList.remove('active');
+  hamburger.classList.remove('open');
+  document.body.style.overflow='';
+}
+
 window.addEventListener("load",()=>{
   const img=document.getElementById("heroImg");
   img.style.opacity="1";
