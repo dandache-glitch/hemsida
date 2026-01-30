@@ -116,7 +116,7 @@ header img{height:70px;}
 .hero{
   position:relative;
   width:100%;
-  min-height:41vh; /* Ytterligare 25% mindre från 55vh */
+  height:86vh; /* Desktop: +30% */
   overflow:hidden;
 }
 .hero img{
@@ -157,16 +157,16 @@ footer{
 }
 
 /* RESPONSIVE */
-@media(max-width:768px){
+@media(max-width:1024px){ .hero{height:75vh;} } /* laptops & tablets mindre */
+@media(max-width:768px){ 
+  .hero{height:41vh;} /* mobil perfekt */
   h1{font-size:26px;}
   h2{font-size:22px;}
   p,li{font-size:16px;}
   .menu-links{display:none;}
   .hamburger{display:flex;}
 }
-@media(max-width:480px){
-  header img{height:60px;}
-}
+@media(max-width:480px){header img{height:60px;}}
 </style>
 </head>
 <body>
@@ -231,19 +231,16 @@ footer{
 <script>
 const mobileMenu=document.getElementById('mobileMenu');
 const hamburger=document.querySelector('.hamburger');
-
 function toggleMenu(element){
   mobileMenu.classList.add('active');
   element.classList.add('open');
   document.body.style.overflow='hidden';
 }
-
 function closeMenu(){
   mobileMenu.classList.remove('active');
   hamburger.classList.remove('open');
   document.body.style.overflow='';
 }
-
 window.addEventListener("load",()=>{
   const img=document.getElementById("heroImg");
   img.style.opacity="1";
