@@ -1,6 +1,8 @@
+const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-/* POST /api/auth/register */
+const JWT_SECRET = "super-secret-key"; // senare env
+
 exports.register = (req, res) => {
   const { email, password, companyId } = req.body;
 
@@ -10,28 +12,25 @@ exports.register = (req, res) => {
 
   const user = User.createUser(email, password, companyId);
 
-  res.json({
-    message: "User registered",
-    user: {
-      email: user.email,
-      companyId: user.companyId
-    }
-  });
+  res.json({ message: "User registered" });
 };
 
-/* POST /api/auth/login */
 exports.login = (req, res) => {
   const { email, password } = req.body;
 
   const user = User.findByEmail(email);
-
   if (!user || user.password !== password) {
     return res.status(401).json({ error: "Invalid credentials" });
   }
 
-  // enkel fake-token
+  const token = jwt.sign(
+    { email: user.email, companyId: user.companyId },
+    JWT_SECRET,
+    { expiresIn: "2h" }
+  );
+
   res.json({
-    token: "demo-token",
+    token,
     user: {
       email: user.email,
       companyId: user.companyId
