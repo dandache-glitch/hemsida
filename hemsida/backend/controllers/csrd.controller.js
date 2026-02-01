@@ -1,10 +1,11 @@
 let csrdState = {
   answers: {},
   score: 0,
-  status: "not_started"
+  status: "not_started",
+  lastUpdated: null
 };
 
-/* Enkel scoring-logik */
+/* Enkel CSRD-scoring (kan byggas ut senare) */
 function calculateScore(answers) {
   let score = 0;
 
@@ -15,28 +16,31 @@ function calculateScore(answers) {
   return score;
 }
 
+/* GET /api/csrd/status */
 exports.getStatus = (req, res) => {
-  res.json({
-    status: csrdState.status,
-    score: csrdState.score,
-    answers: csrdState.answers
-  });
+  res.json(csrdState);
 };
 
+/* POST /api/csrd/submit */
 exports.submit = (req, res) => {
-  const answers = req.body;
+  const answers = req.body || {};
 
   const score = calculateScore(answers);
+  const status = score >= 70 ? "compliant" : "incomplete";
 
   csrdState = {
     answers,
     score,
-    status: score >= 70 ? "compliant" : "incomplete"
+    status,
+    lastUpdated: new Date().toISOString()
   };
 
   res.json({
     message: "CSRD assessment updated",
-    score,
-    status: csrdState.status
+    status,
+    score
   });
 };
+
+/* INTERNAL – används av PDF-export */
+exports._getInternalState = () => csrdState;
