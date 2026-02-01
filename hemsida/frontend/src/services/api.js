@@ -1,19 +1,41 @@
 const API_BASE = "http://localhost:3001/api";
 
-export async function login(email, password) {
-  const res = await fetch(`${API_BASE}/auth/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
-  });
-  return res.json();
+function getAuthHeaders() {
+  const token = localStorage.getItem("token");
+  if (!token) return null;
+
+  return {
+    "Authorization": `Bearer ${token}`,
+    "Content-Type": "application/json"
+  };
 }
 
-export async function fetchReports() {
-  const res = await fetch(`${API_BASE}/reports`, {
+export async function authFetch(url, options = {}) {
+  const headers = getAuthHeaders();
+
+  if (!headers) {
+    logout();
+    throw new Error("Not authenticated");
+  }
+
+  const res = await fetch(url, {
+    ...options,
     headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`
+      ...headers,
+      ...(options.headers || {})
     }
   });
-  return res.json();
+
+  if (res.status === 401) {
+    logout();
+    throw new Error("Session expired");
+  }
+
+  return res;
+}
+
+export function logout() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("companyId");
+  window.location.reload();
 }
