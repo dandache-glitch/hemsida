@@ -25,12 +25,16 @@ app.get("/health", (req, res) => {
 ====================== */
 const authRoutes = require("./routes/auth.routes");
 const csrdRoutes = require("./routes/csrd.routes");
+const aiActRoutes = require("./routes/aiAct.routes");
 
-// Auth routes
+// Auth
 app.use("/api/auth", authRoutes);
 
-// CSRD routes
+// CSRD
 app.use("/api/csrd", csrdRoutes);
+
+// AI Act
+app.use("/api/ai-act", aiActRoutes);
 
 // API root
 app.get("/api", (req, res) => {
@@ -39,7 +43,8 @@ app.get("/api", (req, res) => {
     availableRoutes: [
       "/health",
       "/api/auth",
-      "/api/csrd"
+      "/api/csrd",
+      "/api/ai-act"
     ]
   });
 });
