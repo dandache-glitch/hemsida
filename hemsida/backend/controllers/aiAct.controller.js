@@ -1,51 +1,59 @@
 let aiState = {
-  systemType: null,
-  useCase: null,
+  systemType: "unknown",
+  useCase: "unknown",
   riskLevel: "unknown",
-  notes: []
+  notes: [],
+  lastUpdated: null
 };
 
-function classifyRisk({ biometric, criticalInfrastructure, decisionMaking }) {
-  let risk = "low";
+/* EU AI Act – förenklad riskklassning */
+function classifyRisk(input) {
+  let riskLevel = "low";
   const notes = [];
 
-  if (biometric) {
-    risk = "high";
+  if (input.biometric) {
+    riskLevel = "high";
     notes.push("Biometrisk identifiering");
   }
 
-  if (criticalInfrastructure) {
-    risk = "high";
-    notes.push("Kritisk infrastruktur");
+  if (input.criticalInfrastructure) {
+    riskLevel = "high";
+    notes.push("Användning i kritisk infrastruktur");
   }
 
-  if (decisionMaking && risk !== "high") {
-    risk = "medium";
+  if (input.decisionMaking && riskLevel !== "high") {
+    riskLevel = "medium";
     notes.push("Automatiserat beslutsfattande");
   }
 
-  return { risk, notes };
+  return { riskLevel, notes };
 }
 
+/* GET /api/ai-act/status */
 exports.getStatus = (req, res) => {
   res.json(aiState);
 };
 
+/* POST /api/ai-act/assess */
 exports.assess = (req, res) => {
-  const input = req.body;
+  const input = req.body || {};
 
-  const { risk, notes } = classifyRisk(input);
+  const { riskLevel, notes } = classifyRisk(input);
 
   aiState = {
     systemType: input.systemType || "unknown",
     useCase: input.useCase || "unknown",
-    riskLevel: risk,
-    notes
+    riskLevel,
+    notes,
+    lastUpdated: new Date().toISOString()
   };
 
   res.json({
     message: "AI Act risk assessment complete",
-    riskLevel: risk,
+    riskLevel,
     notes
   });
 };
+
+/* INTERNAL – används av PDF-export */
+exports._getInternalState = () => aiState;
