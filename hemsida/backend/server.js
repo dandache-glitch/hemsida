@@ -15,7 +15,7 @@ app.use(express.json());
 app.get("/health", (req, res) => {
   res.json({
     status: "ok",
-    message: "EU Compliance Platform API running",
+    service: "EU Compliance Platform API",
     timestamp: new Date().toISOString()
   });
 });
@@ -24,17 +24,22 @@ app.get("/health", (req, res) => {
    ROUTES
 ====================== */
 const authRoutes = require("./routes/auth.routes");
+const csrdRoutes = require("./routes/csrd.routes");
 
-// Auth
+// Auth routes
 app.use("/api/auth", authRoutes);
 
-// Placeholder – kommer fyllas senare
+// CSRD routes
+app.use("/api/csrd", csrdRoutes);
+
+// API root
 app.get("/api", (req, res) => {
   res.json({
     message: "API root",
     availableRoutes: [
+      "/health",
       "/api/auth",
-      "/health"
+      "/api/csrd"
     ]
   });
 });
