@@ -1,11 +1,11 @@
-class User {
-  constructor({ id, email, passwordHash, role = "user", createdAt }) {
-    this.id = id;
-    this.email = email;
-    this.passwordHash = passwordHash;
-    this.role = role;
-    this.createdAt = createdAt || new Date();
-  }
-}
+let users = [];
 
-export default User;
+exports.createUser = (email, password, companyId) => {
+  const user = { id: users.length + 1, email, password, companyId };
+  users.push(user);
+  return user;
+};
+
+exports.findByEmail = email => {
+  return users.find(u => u.email === email);
+};
