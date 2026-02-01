@@ -1,6 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 
+const authMiddleware = require("./middleware/auth.middleware");
+
+const authRoutes = require("./routes/auth.routes");
+const csrdRoutes = require("./routes/csrd.routes");
+const aiActRoutes = require("./routes/aiAct.routes");
+const pdfRoutes = require("./routes/pdf.routes");
+const reportRoutes = require("./routes/report.routes");
+
 const app = express();
 
 /* ======================
@@ -23,28 +31,25 @@ app.get("/health", (req, res) => {
 /* ======================
    ROUTES
 ====================== */
-const authRoutes = require("./routes/auth.routes");
-const csrdRoutes = require("./routes/csrd.routes");
-const aiActRoutes = require("./routes/aiAct.routes");
-const pdfRoutes = require("./routes/pdf.routes");
-const reportRoutes = require("./routes/report.routes");
 
-// Auth
+// Auth (öppen)
 app.use("/api/auth", authRoutes);
 
-// CSRD
+// CSRD (öppen för nu)
 app.use("/api/csrd", csrdRoutes);
 
-// AI Act
+// AI Act (öppen för nu)
 app.use("/api/ai-act", aiActRoutes);
 
-// PDF export (sparar rapport i DB)
-app.use("/api/pdf", pdfRoutes);
+// PDF export (KRÄVER auth + companyId)
+app.use("/api/pdf", authMiddleware, pdfRoutes);
 
-// Rapport-historik per företag
-app.use("/api/reports", reportRoutes);
+// Rapport-historik (KRÄVER auth + companyId)
+app.use("/api/reports", authMiddleware, reportRoutes);
 
-// API root
+/* ======================
+   API ROOT
+====================== */
 app.get("/api", (req, res) => {
   res.json({
     message: "API root",
@@ -54,7 +59,7 @@ app.get("/api", (req, res) => {
       "/api/csrd",
       "/api/ai-act",
       "/api/pdf/export",
-      "/api/reports/:companyId"
+      "/api/reports"
     ]
   });
 });
