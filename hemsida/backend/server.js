@@ -27,6 +27,7 @@ const authRoutes = require("./routes/auth.routes");
 const csrdRoutes = require("./routes/csrd.routes");
 const aiActRoutes = require("./routes/aiAct.routes");
 const pdfRoutes = require("./routes/pdf.routes");
+const reportRoutes = require("./routes/report.routes");
 
 // Auth
 app.use("/api/auth", authRoutes);
@@ -37,19 +38,23 @@ app.use("/api/csrd", csrdRoutes);
 // AI Act
 app.use("/api/ai-act", aiActRoutes);
 
-// PDF Export
+// PDF export (sparar rapport i DB)
 app.use("/api/pdf", pdfRoutes);
+
+// Rapport-historik per företag
+app.use("/api/reports", reportRoutes);
 
 // API root
 app.get("/api", (req, res) => {
   res.json({
     message: "API root",
-    availableRoutes: [
+    routes: [
       "/health",
       "/api/auth",
       "/api/csrd",
       "/api/ai-act",
-      "/api/pdf/export"
+      "/api/pdf/export",
+      "/api/reports/:companyId"
     ]
   });
 });
@@ -58,9 +63,7 @@ app.get("/api", (req, res) => {
    ERROR HANDLING
 ====================== */
 app.use((req, res) => {
-  res.status(404).json({
-    error: "Route not found"
-  });
+  res.status(404).json({ error: "Route not found" });
 });
 
 /* ======================
