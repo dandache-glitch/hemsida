@@ -3,34 +3,56 @@ const cors = require("cors");
 
 const app = express();
 
-/* ====== MIDDLEWARE ====== */
+/* ======================
+   MIDDLEWARE
+====================== */
 app.use(cors());
 app.use(express.json());
 
-/* ====== HEALTH CHECK ====== */
+/* ======================
+   HEALTH CHECK
+====================== */
 app.get("/health", (req, res) => {
   res.json({
     status: "ok",
-    service: "EU Compliance Platform",
-    time: new Date().toISOString()
+    message: "EU Compliance Platform API running",
+    timestamp: new Date().toISOString()
   });
 });
 
-/* ====== AUTH ROUTES ====== */
+/* ======================
+   ROUTES
+====================== */
 const authRoutes = require("./routes/auth.routes");
+
+// Auth
 app.use("/api/auth", authRoutes);
 
-/* ====== PLACEHOLDER ROUTES (kommer byggas) ====== */
+// Placeholder – kommer fyllas senare
 app.get("/api", (req, res) => {
   res.json({
-    message: "API running",
-    modules: ["auth", "csrd", "ai-act", "supply-chain", "esg"]
+    message: "API root",
+    availableRoutes: [
+      "/api/auth",
+      "/health"
+    ]
   });
 });
 
-/* ====== SERVER START ====== */
-const PORT = 3000;
+/* ======================
+   ERROR HANDLING
+====================== */
+app.use((req, res) => {
+  res.status(404).json({
+    error: "Route not found"
+  });
+});
+
+/* ======================
+   SERVER
+====================== */
+const PORT = 3001;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Backend running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
