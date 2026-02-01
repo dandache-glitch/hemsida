@@ -9,10 +9,9 @@ export async function login(email, password) {
   return res.json();
 }
 
-export async function fetchReports(companyId) {
-  const res = await fetch(`${API_BASE}/reports/${companyId}`, {
+export async function fetchReports() {
+  const res = await fetch(`${API_BASE}/reports`, {
     headers: {
-      "x-company-id": localStorage.getItem("companyId"),
       "Authorization": `Bearer ${localStorage.getItem("token")}`
     }
   });
