@@ -1,18 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const generatePDF = require("../utils/pdfGenerator");
 
+const generatePDF = require("../utils/pdfGenerator");
 const csrdController = require("../controllers/csrd.controller");
 const aiActController = require("../controllers/aiAct.controller");
 const db = require("../database/db");
 
+/*
+  GET /api/pdf/export
+  companyId kommer från auth.middleware
+*/
 router.get("/export", (req, res) => {
-  const companyId = req.query.companyId || "demo-company";
+  const companyId = req.companyId;
 
   const csrd = csrdController._getInternalState();
   const aiAct = aiActController._getInternalState();
 
-  // spara rapport
+  // Spara rapport i databasen
   db.run(
     `
     INSERT INTO reports
@@ -29,7 +33,12 @@ router.get("/export", (req, res) => {
     ]
   );
 
-  generatePDF(res, { csrd, aiAct });
+  // Generera PDF
+  generatePDF(res, {
+    companyId,
+    csrd,
+    aiAct
+  });
 });
 
 module.exports = router;
