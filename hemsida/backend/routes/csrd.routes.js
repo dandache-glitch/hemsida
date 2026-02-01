@@ -1,30 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const csrdController = require("../controllers/csrd.controller");
 
-/**
- * GET /api/csrd/status
- * Enkel status för CSRD-compliance
- */
-router.get("/status", (req, res) => {
-  res.json({
-    module: "CSRD",
-    status: "not_started",
-    message: "CSRD data not submitted yet"
-  });
-});
+/* GET CSRD status */
+router.get("/status", csrdController.getStatus);
 
-/**
- * POST /api/csrd/submit
- * Tar emot CSRD-data (mock än så länge)
- */
-router.post("/submit", (req, res) => {
-  const data = req.body;
-
-  res.json({
-    success: true,
-    message: "CSRD data received",
-    data
-  });
-});
+/* POST CSRD submission */
+router.post("/submit", csrdController.submit);
 
 module.exports = router;
