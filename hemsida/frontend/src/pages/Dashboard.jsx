@@ -1,18 +1,16 @@
+import { logout } from "../services/api";
 import PDFButton from "../components/PDFButton";
 import ReportHistory from "../components/ReportHistory";
 
 export default function Dashboard() {
-  const companyId = "demo-ab"; // senare från auth
-
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
+      <button onClick={logout}>Logga ut</button>
+
       <h1>Dashboard</h1>
 
       <PDFButton />
-
-      <hr />
-
-      <ReportHistory companyId={companyId} />
+      <ReportHistory />
     </div>
   );
 }
