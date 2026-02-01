@@ -1,27 +1,32 @@
 const API_BASE = "http://localhost:3001/api";
 
-function getAuthHeaders() {
-  const token = localStorage.getItem("token");
-  if (!token) return null;
-
-  return {
-    "Authorization": `Bearer ${token}`,
-    "Content-Type": "application/json"
-  };
+/* ======================
+   LOGOUT
+====================== */
+export function logout() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("companyId");
+  window.location.reload();
 }
 
+/* ======================
+   AUTH FETCH
+   - skickar JWT automatiskt
+   - loggar ut vid 401 (token utgången)
+====================== */
 export async function authFetch(url, options = {}) {
-  const headers = getAuthHeaders();
+  const token = localStorage.getItem("token");
 
-  if (!headers) {
+  if (!token) {
     logout();
-    throw new Error("Not authenticated");
+    throw new Error("No token");
   }
 
   const res = await fetch(url, {
     ...options,
     headers: {
-      ...headers,
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json",
       ...(options.headers || {})
     }
   });
@@ -34,8 +39,31 @@ export async function authFetch(url, options = {}) {
   return res;
 }
 
-export function logout() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("companyId");
-  window.location.reload();
+/* ======================
+   AUTH
+====================== */
+export async function login(email, password) {
+  const res = await fetch(`${API_BASE}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  return res.json();
+}
+
+/* ======================
+   REPORTS
+====================== */
+export async function fetchReports() {
+  const res = await authFetch(`${API_BASE}/reports`);
+  return res.json();
+}
+
+/* ======================
+   PDF
+====================== */
+export async function fetchPDF() {
+  const res = await authFetch(`${API_BASE}/pdf/export`);
+  return res.blob();
 }
