@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import healthRoutes from "./routes/health.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 
 dotenv.config();
 
@@ -22,8 +23,9 @@ app.get("/", (req, res) => {
 
 // API routes
 app.use("/api", healthRoutes);
+app.use("/api", authRoutes);
 
-// Fallback (okänd route)
+// 404 fallback
 app.use((req, res) => {
   res.status(404).json({ error: "Route not found" });
 });
