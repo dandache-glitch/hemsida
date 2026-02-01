@@ -2,17 +2,16 @@ const express = require("express");
 const router = express.Router();
 const generatePDF = require("../utils/pdfGenerator");
 
-/* Mock data (sen hämtas från controllers/DB) */
+const csrdController = require("../controllers/csrd.controller");
+const aiActController = require("../controllers/aiAct.controller");
+
 router.get("/export", (req, res) => {
+  const csrd = csrdController._getInternalState();
+  const aiAct = aiActController._getInternalState();
+
   const data = {
-    csrd: {
-      status: "incomplete",
-      score: 60
-    },
-    aiAct: {
-      riskLevel: "medium",
-      notes: ["Automatiserat beslutsfattande"]
-    }
+    csrd,
+    aiAct
   };
 
   generatePDF(res, data);
