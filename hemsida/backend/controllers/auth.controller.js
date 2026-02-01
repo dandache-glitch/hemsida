@@ -1,52 +1,40 @@
-/* MOCK USER (endast för test) */
-const mockUser = {
-  id: 1,
-  email: "test@company.se",
-  password: "123456",
-  role: "admin",
-  company: "Demo AB"
-};
+const User = require("../models/User");
 
+/* POST /api/auth/register */
 exports.register = (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, companyId } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).json({ message: "Email och lösenord krävs" });
+  if (!email || !password || !companyId) {
+    return res.status(400).json({ error: "Missing fields" });
   }
 
-  return res.json({
-    message: "User registered (mock)",
+  const user = User.createUser(email, password, companyId);
+
+  res.json({
+    message: "User registered",
     user: {
-      email,
-      role: "admin"
+      email: user.email,
+      companyId: user.companyId
     }
   });
 };
 
+/* POST /api/auth/login */
 exports.login = (req, res) => {
   const { email, password } = req.body;
 
-  if (email !== mockUser.email || password !== mockUser.password) {
-    return res.status(401).json({ message: "Fel inloggning" });
+  const user = User.findByEmail(email);
+
+  if (!user || user.password !== password) {
+    return res.status(401).json({ error: "Invalid credentials" });
   }
 
-  return res.json({
-    message: "Login successful",
-    token: "mock-jwt-token",
+  // enkel fake-token
+  res.json({
+    token: "demo-token",
     user: {
-      email: mockUser.email,
-      role: mockUser.role,
-      company: mockUser.company
-    }
-  });
-};
-
-exports.me = (req, res) => {
-  return res.json({
-    user: {
-      email: mockUser.email,
-      role: mockUser.role,
-      company: mockUser.company
+      email: user.email,
+      companyId: user.companyId
     }
   });
 };
