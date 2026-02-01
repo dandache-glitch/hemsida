@@ -26,6 +26,7 @@ app.get("/health", (req, res) => {
 const authRoutes = require("./routes/auth.routes");
 const csrdRoutes = require("./routes/csrd.routes");
 const aiActRoutes = require("./routes/aiAct.routes");
+const pdfRoutes = require("./routes/pdf.routes");
 
 // Auth
 app.use("/api/auth", authRoutes);
@@ -36,6 +37,9 @@ app.use("/api/csrd", csrdRoutes);
 // AI Act
 app.use("/api/ai-act", aiActRoutes);
 
+// PDF Export
+app.use("/api/pdf", pdfRoutes);
+
 // API root
 app.get("/api", (req, res) => {
   res.json({
@@ -44,7 +48,8 @@ app.get("/api", (req, res) => {
       "/health",
       "/api/auth",
       "/api/csrd",
-      "/api/ai-act"
+      "/api/ai-act",
+      "/api/pdf/export"
     ]
   });
 });
